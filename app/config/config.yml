@@ -71,19 +71,19 @@ doctrine:
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
 #        naming_strategy: doctrine.orm.naming_strategy.underscore
-#        auto_mapping: true
+        auto_mapping: true
 
-        entity_managers:
-            default:
-                mappings:
+#        entity_managers:
+#            default:
+#                mappings:
 #                    ApplicationSonataUserBundle: ~
-                    SonataUserBundle: ~
-                    FOSUserBundle: ~ 
-                    AppProjectBundle:
-                        type:      ~
-                        dir:       "Entity"
-                        prefix:    "AppProjectBundle\Entity"
-                        is_bundle: ~
+#                    SonataUserBundle: ~
+#                    FOSUserBundle: ~ 
+#                    AppProjectBundle:
+#                        type:      ~
+#                        dir:       "Entity"
+#                        prefix:    "AppProjectBundle\Entity"
+#                        is_bundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -143,7 +143,7 @@ security:
 fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
-    user_class:     Sonata\UserBundle\Entity\BaseUser
+    user_class:     Application\Sonata\UserBundle\Entity\User
 
 
     group:
