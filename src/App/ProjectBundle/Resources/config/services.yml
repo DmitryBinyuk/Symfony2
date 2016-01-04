@@ -13,3 +13,14 @@ services:
 #        arguments: [~, App\ProjectBundle\Entity\Author, SonataAdminBundle:CRUD]
 #        tags:
 #            - {name: sonata.admin, manager_type: orm, group: admin, label: Author}
+    app_project.admin.product:
+        class: App\ProjectBundle\Admin\ProductAdmin
+        arguments: [~, App\ProjectBundle\Entity\Product, AppProjectBundle:ProductAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Product}
+
+    app_project.admin.product_category:
+        class: App\ProjectBundle\Admin\ProductCategoryAdmin
+        arguments: [~, App\ProjectBundle\Entity\ProductCategory, AppProjectBundle:ProductCategoryAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: ProductCategory}
