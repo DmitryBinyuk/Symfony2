@@ -24,3 +24,9 @@ services:
         arguments: [~, App\ProjectBundle\Entity\ProductCategory, AppProjectBundle:ProductCategoryAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: ProductCategory}
+
+    app_project.admin.producer:
+        class: App\ProjectBundle\Admin\ProducerAdmin
+        arguments: [~, App\ProjectBundle\Entity\Producer, AppProjectBundle:ProducerAdmin]
+        tags:
+            - {name: sonata.admin, manager_type: orm, group: admin, label: Producer}

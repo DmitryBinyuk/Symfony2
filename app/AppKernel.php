@@ -31,9 +31,15 @@ class AppKernel extends Kernel
             # FOR SONATA USER START
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
-//            new Sonata\UserBundle\SonataUserBundle(),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),            
             # FOR SONATA USER END
+            
+            # FOR SONATA MEDIA START
+            new JMS\SerializerBundle\JMSSerializerBundle(),
+            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Sonata\IntlBundle\SonataIntlBundle(),
+            # FOR SONATA MEDIA END
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

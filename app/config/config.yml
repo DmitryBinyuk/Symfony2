@@ -10,7 +10,7 @@ parameters:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -22,7 +22,7 @@ framework:
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
-    default_locale:  "%locale%"
+    default_locale:  ru
     trusted_hosts:   ~
     trusted_proxies: ~
     session:
@@ -72,6 +72,55 @@ doctrine:
         auto_generate_proxy_classes: "%kernel.debug%"
 #        naming_strategy: doctrine.orm.naming_strategy.underscore
         auto_mapping: true
+        
+#        entity_managers:
+#            default:
+#                mappings:
+#                    SonataMediaBundle: ~
+                    
+    dbal:
+        types:
+            json: Sonata\Doctrine\Types\JsonType
+            
+#doctrine_phpcr:
+#    odm:
+#        auto_mapping: true
+#        mappings:
+#            SonataMediaBundle:
+#                prefix: Sonata\MediaBundle\PHPCR
+                
+sonata_media:
+    # if you don't use default namespace configuration
+    #class:
+    #    media: MyVendor\MediaBundle\Entity\Media
+    #    gallery: MyVendor\MediaBundle\Entity\Gallery
+    #    gallery_has_media: MyVendor\MediaBundle\Entity\GalleryHasMedia
+    default_context: default
+    db_driver: doctrine_orm # or doctrine_mongodb, doctrine_phpcr
+    contexts:
+        default:  # the default context is mandatory
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+
+            formats:
+                small: { width: 100 , quality: 70}
+                big:   { width: 500 , quality: 70}
+
+    cdn:
+        server:
+            path: /uploads/media # http://media.sonata-project.org/
+
+    filesystem:
+        local:
+            directory:  %kernel.root_dir%/../web/uploads/media
+            create:     false
+            
+    providers:
+        image:
+            resizer: sonata.media.resizer.square
 
 #        entity_managers:
 #            default:

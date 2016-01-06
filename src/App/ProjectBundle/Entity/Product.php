@@ -42,15 +42,22 @@ class Product
      */
     private $price;
 
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="category", type="string", length=255)
+  /**
+     * 
+     * @ORM\ManyToOne(targetEntity="App\ProjectBundle\Entity\ProductCategory", inversedBy="products")
+     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
+     * 
      */
-    private $category;
+    protected $category;
 
+    public function addCategory(\App\ProjectBundle\Entity\ProductCategory $category)
+    {
+        $this->category[] = $category;
 
-    /**
+        return $this;
+    }
+
+  /**
      * Get id
      *
      * @return integer
@@ -132,7 +139,7 @@ class Product
         return $this->price;
     }
 
-    /**
+  /**
      * Set category
      *
      * @param string $category
@@ -155,5 +162,9 @@ class Product
     {
         return $this->category;
     }
+    
+//    public function __toString()
+//    {
+//    return $this->getName();
+//    }
 }
-
