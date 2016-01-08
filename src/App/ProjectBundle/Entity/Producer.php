@@ -3,6 +3,7 @@
 namespace App\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Sonata\MediaBundle\Model\MediaInterface;
 
 /**
  * Producer
@@ -174,7 +175,25 @@ class Producer
         return $this->getName();
     }
     
-//    public function setCategories($categories) {
-//        $this->categories = $categories;
-//    }
+   /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
+     */
+    protected $media;
+
+    /**
+     * @param MediaInterface $media
+     */
+    public function setMedia(MediaInterface $media)
+    {
+        $this->media = $media;
+    }
+
+    /**
+     * @return MediaInterface
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
 }

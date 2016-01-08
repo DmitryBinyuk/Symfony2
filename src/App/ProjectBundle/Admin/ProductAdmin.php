@@ -33,6 +33,10 @@ class ProductAdmin extends Admin
             ->add('description', null, array('required' => false, 'label' => 'Описание'))
             ->add('price', null, array('required' => true, 'label' => 'Цена'))
             ->add('category', null, array('required' => true, 'label' => 'Категория'))
+            ->add('media', 'sonata_type_model_list', array(
+                ), array(
+                    'placeholder' => 'No media selected'
+                ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -52,7 +56,12 @@ class ProductAdmin extends Admin
             ->add('name', null, array('required' => true, 'label' => 'Имя'))
             ->add('description', null, array('required' => false, 'label' => 'Описание'))
             ->add('price', null, array('required' => true, 'label' => 'Цена'))
-            ->add('category', 'sonata_type_model', array('multiple' => false, 'label' => 'Категория'))
+//            ->add('category', 'sonata_type_model', array('label' => 'Категория', 'required' => false,
+//    'multiple' => false))
+            ->add('media', 'sonata_type_model_list', array(
+                ), array(
+                    'placeholder' => 'No media selected'
+                ))
         ;
     }
 

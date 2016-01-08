@@ -31,6 +31,10 @@ class ProducerAdmin extends Admin
             ->add('name', null, array('required' => false, 'label' => 'Имя'))
             ->add('country', null, array('required' => false, 'label' => 'Страна'))
             ->add('description', null, array('required' => false, 'label' => 'Описание'))
+            ->add('media', 'sonata_type_model_list', array(
+                ), array(
+                    'placeholder' => 'No media selected'
+                ))
             ->add('_action', 'actions', array(
                 'actions' => array(
                     'show' => array(),
@@ -50,6 +54,10 @@ class ProducerAdmin extends Admin
             ->add('name', null, array('required' => false, 'label' => 'Имя'))
             ->add('country', null, array('required' => false, 'label' => 'Страна'))
             ->add('description', null, array('required' => false, 'label' => 'Описание'))
+            ->add('media', 'sonata_type_model_list', array(
+                ), array(
+                    'placeholder' => 'No media selected'
+                ))
 //            ->add('categories', 'sonata_type_model', array('multiple' => true))
         ;
     }

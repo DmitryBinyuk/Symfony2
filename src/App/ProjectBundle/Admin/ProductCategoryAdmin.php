@@ -47,7 +47,7 @@ class ProductCategoryAdmin extends Admin
         $formMapper
             ->add('name', null, array('required' => true, 'label' => 'Имя'))
             ->add('description', null, array('required' => false, 'label' => 'Описание'))
-            ->add('producers', 'sonata_type_model', array('multiple' => true))
+            ->add('producers', 'sonata_type_model', array('multiple' => false))
         ;
     }
 

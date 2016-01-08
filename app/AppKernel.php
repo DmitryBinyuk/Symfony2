@@ -40,6 +40,14 @@ class AppKernel extends Kernel
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Sonata\IntlBundle\SonataIntlBundle(),
             # FOR SONATA MEDIA END
+            
+            # FOR PAGINATION START
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            # FOR PAGINATION END
+            
+            # FOR FIXTURES  START
+            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
+            # FOR FIXTURES  END
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

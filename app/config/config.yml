@@ -88,7 +88,19 @@ doctrine:
 #        mappings:
 #            SonataMediaBundle:
 #                prefix: Sonata\MediaBundle\PHPCR
-                
+
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: KnpPaginatorBundle:Pagination:sliding.html.twig     # sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+#FOR SONATA MEDIA                
 sonata_media:
     # if you don't use default namespace configuration
     #class:
@@ -106,8 +118,9 @@ sonata_media:
                 - sonata.media.provider.file
 
             formats:
-                small: { width: 100 , quality: 70}
+                small: { width: 150 , quality: 80}
                 big:   { width: 500 , quality: 70}
+                preview:   { width: 195, quality: 70}
 
     cdn:
         server:
@@ -121,6 +134,37 @@ sonata_media:
     providers:
         image:
             resizer: sonata.media.resizer.square
+            allowed_mime_types:
+              - image/gif
+              - image/jpeg
+              - image/png
+              
+        file:
+            allowed_mime_types:
+              - video/x-ms-asf
+              - application/octet-stream
+              - text/plain
+              - video/mp4
+            allowed_extensions:
+              - gif
+              - png
+              - jpeg
+              - jpg
+              - wmv
+              - mp3
+              - txt
+              - mp4
+              
+        youtube:
+            service:    sonata.media.provider.youtube
+            resizer:    sonata.media.resizer.simple
+            filesystem: sonata.media.filesystem.local
+            cdn:        sonata.media.cdn.server
+            generator:  sonata.media.generator.default
+            thumbnail:  sonata.media.thumbnail.format
+            html5: false
+#FOR SONATA MEDIA
+
 
 #        entity_managers:
 #            default:
