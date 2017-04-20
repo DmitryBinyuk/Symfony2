@@ -21,17 +21,6 @@ class ProductsController extends Controller
         
         $products = $em->getRepository('AppProjectBundle:Product')->getAllProducts();
         $products = $products->getResult();
-        
-        //using query builder
-//        $qbcities = $em->createQueryBuilder();
-//        $qbcities->select('dc')
-//                ->from('\App\ProjectBundle\Entity\Product', 'dc');
-//        
-//        $a = $qbcities->getQuery()->getResult();
-//        var_dump($a);
-        
-//        var_dump($products);
-//die('test1');
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
@@ -40,10 +29,6 @@ class ProductsController extends Controller
             4
         );
 
-//        return array(
-//            'pagination' => $pagination,
-//            'products' => $products
-//        );
         
         return $this->render('AppProjectBundle:Products:show.html.twig', array('pagination' => $pagination, 'products' => $products));
     }

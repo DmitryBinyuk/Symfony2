@@ -10,4 +10,9 @@ namespace App\ProjectBundle\Entity;
  */
 class ProducerRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllProducers()
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT p FROM AppProjectBundle:Producer p");
+    }
 }

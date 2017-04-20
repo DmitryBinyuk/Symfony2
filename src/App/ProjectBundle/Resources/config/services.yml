@@ -30,3 +30,7 @@ services:
         arguments: [~, App\ProjectBundle\Entity\Producer, AppProjectBundle:ProducerAdmin]
         tags:
             - {name: sonata.admin, manager_type: orm, group: admin, label: Producer}
+
+    weather.service:
+            class: App\ProjectBundle\Services\WeatherService
+            arguments: []

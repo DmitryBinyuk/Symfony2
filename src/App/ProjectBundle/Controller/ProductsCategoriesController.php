@@ -8,44 +8,27 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
 use App\ProjectBundle\Entity\Product;
 
-class ProductsController extends Controller
+class ProductsCategoriesController extends Controller
 {
     /**
-     * @Route("/products", name="products")
+     * @Route("/categories", name="categories")
      * @Template()
      */
     public function showAction(Request $request)
     {
-        
         $em = $this->getDoctrine()->getManager();
-        
-        $products = $em->getRepository('AppProjectBundle:Product')->getAllProducts();
-        $products = $products->getResult();
-        
-        //using query builder
-//        $qbcities = $em->createQueryBuilder();
-//        $qbcities->select('dc')
-//                ->from('\App\ProjectBundle\Entity\Product', 'dc');
-//        
-//        $a = $qbcities->getQuery()->getResult();
-//        var_dump($a);
-        
-//        var_dump($products);
-//die('test1');
+
+        $categories = $em->getRepository('AppProjectBundle:ProductCategory')->getAllCategories();
+        $categories = $categories->getResult();
 
         $paginator  = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
-            $products,
+            $categories,
             $request->query->get('page', 1),
             4
         );
-
-//        return array(
-//            'pagination' => $pagination,
-//            'products' => $products
-//        );
         
-        return $this->render('AppProjectBundle:Products:show.html.twig', array('pagination' => $pagination, 'products' => $products));
+        return $this->render('AppProjectBundle:ProductsCategories:show.html.twig', array('pagination' => $pagination, 'categories' => $categories));
     }
 
 }
