@@ -10,4 +10,9 @@ namespace App\ProjectBundle\Entity;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getProfile()
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT p FROM AppProjectBundle:User p");
+    }
 }

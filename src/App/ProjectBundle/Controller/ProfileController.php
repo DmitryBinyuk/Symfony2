@@ -16,13 +16,22 @@ class ProfileController extends Controller
      */
     public function showAction(Request $request)
     {
-	    $user = new User();
+//	    $user = new User();
+
+        $id = 1;
+        $em = $this->getDoctrine()->getManager();
+
+        $categories = $em->getRepository('AppProjectBundle:User')->find($id);
+        $user = $categories->getResult();
+
+
 
         $repository = $this->getDoctrine()->getRepository('AppProjectBundle:User');
 
         $user = $repository->find(1);
 
-        var_dump($user);die;
+        var_dump($user);
+        die;
 
         $form = $this->createFormBuilder($user)
             ->add('firstname', 'text', array('data' => 'Default value'))
