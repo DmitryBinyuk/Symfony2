@@ -1,15 +1,11 @@
 {% extends "::base.html.twig" %}
 
-{% block title %}AppProjectBundle:Products:show{% endblock %}
+{% block title %}AppProjectBundle:ProductsCategories:show{% endblock %}
 
 {% block body %}
-    
-{#<div class="row">#}
 
-{#<div class="span6 offset3">
-<div class="span5 pull-right">#}
 <div class="row">
-<h2>Products</h2>
+<h2>Categories</h2>
 </div>
     <div class="row">
       <div class="span12">        
@@ -23,22 +19,15 @@
                 <h3>{{ item.name }}</h3>
               </div>
               <div>
-              {% media item.media, 'small' %}
+              {#{% media item.media, 'small' %}#}
               </div><br>
-              <div class="thumbnail-pad">
-                  <p>{{ item.description }}</p>
-                  <a href="{{ path('product', {'id': item.id}) }}" class="btn btn_">more info</a>
-              </div>
             </div>
           </li>
         
     {% endfor %}
      </ul>
       </div>
-    </div> 
-{#</div>
-</div>#}
-{#</div>#}
+    </div>
 <div class="row">
 <div class="span6 offset3">
 <div class="text-center navigation">

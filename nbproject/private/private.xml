@@ -2,19 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/var/www/myproject/src/App/ProjectBundle/Admin/ProductCategoryAdmin.php</file>
-            <file>file:/var/www/myproject/src/App/ProjectBundle/Admin/ProductAdmin.php</file>
-            <file>file:/var/www/myproject/src/App/ProjectBundle/DataFixtures/ORM/LoadProductData.php</file>
-            <file>file:/var/www/myproject/app/AppKernel.php</file>
-            <file>file:/var/www/myproject/src/App/ProjectBundle/Resources/views/Product/show.html.twig</file>
-            <file>file:/var/www/myproject/src/App/ProjectBundle/Resources/views/Products/show.html.twig</file>
-            <file>file:/var/www/myproject/src/App/ProjectBundle/Entity/Product.php</file>
-            <file>file:/var/www/myproject/app/config/config.yml</file>
-            <file>file:/var/www/myproject/src/App/ProjectBundle/Entity/ProductCategory.php</file>
-            <file>file:/var/www/myproject/src/App/ProjectBundle/Entity/ProductRepository.php</file>
-            <file>file:/var/www/myproject/src/App/ProjectBundle/Admin/ProducerAdmin.php</file>
-            <file>file:/var/www/myproject/src/App/ProjectBundle/Controller/ProductsController.php</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

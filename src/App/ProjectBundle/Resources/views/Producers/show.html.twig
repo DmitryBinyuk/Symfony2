@@ -1,0 +1,20 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppProjectBundle:Producers:show{% endblock %}
+
+{% block body %}
+
+    <div class="row">
+
+        <div class="span12">
+            <h2>{{producer[0].name}}</h2>
+            <div class="span3 col-lg-1 col-offset-6 centered">
+
+                {% media producer[0].media, 'big' %}
+                <h5>Description:</h5>
+                <p>{{ producer[0].description }}</p>
+
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -8,6 +8,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\ProjectBundle\Entity\Product;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\ProjectBundle\Services\WeatherService;
 
 class ProductController extends Controller {
 
@@ -40,10 +41,10 @@ class ProductController extends Controller {
         $product = $qb->getQuery();
         $product = $product->getResult();
 
-//    var_dump($product);
-//    die('test_pro');
+        $weatherService = $this->get('weather.service');
+        $weather = $weatherService->getWeather();
 
-        return $this->render('AppProjectBundle:Product:show.html.twig', array('product' => $product));
+        return $this->render('AppProjectBundle:Product:show.html.twig', array('product' => $product, 'weather' => $weather));
     }
     
     /**

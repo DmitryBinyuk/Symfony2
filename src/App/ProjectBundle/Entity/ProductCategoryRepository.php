@@ -10,4 +10,9 @@ namespace App\ProjectBundle\Entity;
  */
 class ProductCategoryRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getAllCategories()
+    {
+        return $this->getEntityManager()
+            ->createQuery("SELECT p FROM AppProjectBundle:ProductCategory p");
+    }
 }

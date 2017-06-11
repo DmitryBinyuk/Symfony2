@@ -12,3 +12,7 @@ services:
         arguments: [~, AppBundle\Entity\Category, ~]
         tags:
             - { name: sonata.admin, manager_type: orm, label: Category }
+            
+#    weather.service:
+#        class:     App\ProjectBundle\Services\WeatherService
+#        arguments: []
