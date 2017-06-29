@@ -238,7 +238,8 @@ security:
 fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
-    user_class:     Application\Sonata\UserBundle\Entity\User
+    user_class:     App\ProjectBundle\Entity\User 
+    #Application\Sonata\UserBundle\Entity\User
 
 
     group:
