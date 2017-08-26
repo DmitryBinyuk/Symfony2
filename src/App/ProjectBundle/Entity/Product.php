@@ -4,6 +4,7 @@ namespace App\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Sonata\MediaBundle\Model\MediaInterface;
+use App\ProjectBundle\Entity\DeliveryService;
 
 /**
  * Product
@@ -43,13 +44,22 @@ class Product
      */
     private $price;
 
-  /**
+    /**
      * 
      * @ORM\ManyToOne(targetEntity="App\ProjectBundle\Entity\ProductCategory", inversedBy="products")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * 
      */
     protected $category;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="DeliveryService", mappedBy="products")
+     */
+    private $deliveryServices;
+
+    public function __construct() {
+        $this->deliveryServices = new ArrayCollection();
+    }
 
     public function addCategory(\App\ProjectBundle\Entity\ProductCategory $category)
     {
@@ -184,5 +194,27 @@ class Product
     public function getMedia()
     {
         return $this->media;
+    }
+
+    /**
+     * Add delivery service
+     *
+     * @param DeliveryService $deliveryService
+     */
+    public function addDeliveryService(DeliveryService $deliveryService)
+    {
+        $this->deliveryServices[] = $deliveryService;
+
+        return $this;
+    }
+
+    /**
+     * Remove delivery service
+     *
+     * @param DeliveryService $deliveryService
+     */
+    public function removeDeliveryService(DeliveryService $deliveryService)
+    {
+        $this->deliveryServices->removeElement($deliveryService);
     }
 }

@@ -3,6 +3,8 @@
 namespace App\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\ProjectBundle\Entity\Product;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * DeliveryService
@@ -34,6 +36,16 @@ class DeliveryService
      * @ORM\Column(name="price_per_kilometer", type="integer")
      */
     private $pricePerKilometer;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Product", inversedBy="delivery_service")
+     * @ORM\JoinTable(name="products_delivery_services")
+     */
+    private $products;
+
+    public function __construct() {
+        $this->products = new ArrayCollection();
+    }
 
 
     /**
@@ -92,6 +104,28 @@ class DeliveryService
     public function getPricePerKilometer()
     {
         return $this->pricePerKilometer;
+    }
+
+    /**
+     * Add product
+     *
+     * @param Product $product
+     */
+    public function addProduct(Product $product)
+    {
+        $this->products[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product
+     *
+     * @param Product $product
+     */
+    public function removeProduct(Product $product)
+    {
+        $this->products->removeElement($product);
     }
 }
 

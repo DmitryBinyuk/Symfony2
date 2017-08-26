@@ -37,9 +37,6 @@ class ProductCategory
      */
     private $description;
 
-    
-    // ...
-
     /**
      * @ORM\OneToMany(targetEntity="App\ProjectBundle\Entity\Product", mappedBy="category")
      */
@@ -159,7 +156,7 @@ class ProductCategory
     
     public function __toString()
     {
-    return $this->getName();
+        return $this->getName();
     }
 
     /**
