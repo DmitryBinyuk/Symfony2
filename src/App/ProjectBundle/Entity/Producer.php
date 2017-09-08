@@ -50,6 +50,13 @@ class Producer
      */
     private $categories;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="watches", type="integer")
+     */
+    private $watches;
+
     public function __construct() {
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
     }
@@ -195,5 +202,29 @@ class Producer
     public function getMedia()
     {
         return $this->media;
+    }
+
+    /**
+     * Set watches
+     *
+     * @param integer $watches
+     *
+     * @return Producer
+     */
+    public function setWatches($watches)
+    {
+        $this->watches = $watches;
+
+        return $this;
+    }
+
+    /**
+     * Get watches
+     *
+     * @return integer
+     */
+    public function getWatches()
+    {
+        return $this->watches;
     }
 }

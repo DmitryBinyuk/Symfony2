@@ -51,6 +51,13 @@ class Product
      * 
      */
     protected $category;
+    
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="watches", type="integer")
+     */
+    private $watches;
 
     /**
      * @ORM\ManyToMany(targetEntity="DeliveryService", mappedBy="products")
@@ -216,5 +223,39 @@ class Product
     public function removeDeliveryService(DeliveryService $deliveryService)
     {
         $this->deliveryServices->removeElement($deliveryService);
+    }
+
+    /**
+     * Set watches
+     *
+     * @param integer $watches
+     *
+     * @return Product
+     */
+    public function setWatches($watches)
+    {
+        $this->watches = $watches;
+
+        return $this;
+    }
+
+    /**
+     * Get watches
+     *
+     * @return integer
+     */
+    public function getWatches()
+    {
+        return $this->watches;
+    }
+
+    /**
+     * Get deliveryServices
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getDeliveryServices()
+    {
+        return $this->deliveryServices;
     }
 }

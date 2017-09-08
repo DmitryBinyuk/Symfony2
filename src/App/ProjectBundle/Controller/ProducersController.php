@@ -2,11 +2,13 @@
 
 namespace App\ProjectBundle\Controller;
 
+use App\ProjectBundle\Entity\Producer;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\HttpFoundation\Request;
-use App\ProjectBundle\Entity\Product;
+use App\ProjectBundle\Event\ProducerWatchEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class ProducersController extends Controller
 {
@@ -16,7 +18,10 @@ class ProducersController extends Controller
      */
     public function indexAction(Request $request)
     {
-        
+	//test services for fun
+        $logger = $this->container->get('logger');
+        $logger->info('Look! test services for fun!');
+	
         $em = $this->getDoctrine()->getManager();
         
         $producers = $em->getRepository('AppProjectBundle:Producer')->getAllProducers();
@@ -50,6 +55,15 @@ class ProducersController extends Controller
 
         $producer = $qb->getQuery();
         $producer = $producer->getResult();
+
+        //Dispatch Event
+        $producer = $this->getDoctrine()->getRepository(Producer::class)->find($id);
+
+        $event = new ProducerWatchEvent($producer);
+
+        $dispatcher = $this->get('event_dispatcher');
+
+        $dispatcher->dispatch(ProducerWatchEvent::NAME, $event);
 
         return $this->render('AppProjectBundle:Producers:show.html.twig',
                             array('producer' => $producer));

@@ -7,28 +7,28 @@
 <div class="row">
 
     <div class="span12 col-md-12">
-        <h2>{{product[0].name}}</h2>
+        <h2>{{product.name}}</h2>
         <div class="span3 col-md-4">
             
-            {% media product[0].media, 'big' %}
+            {% media product.media, 'big' %}
             <h5>Description:</h5>
-            <p>{{ product[0].description }}</p>
+            <p>{{ product.description }}</p>
 
         </div>
 
         <div class="col-md-8">
 
         <select name="country"data-width="100%">
-            {% for key,val in form.country.vars.choices %}
+            {#{% for key,val in form.country.vars.choices %}
                  <option value="{{ val.value }}" {{  form.country.vars.value ? ' selected ' :(val.value == form.country.vars.value ? ' selected ' : '') }}>{{ val.label | trans }}</option>
-            % endfor %}
+            {% endfor %}#}
         </select>
 
-        {% if product[0].category %}
-            {{ product[0].category.name }}
+        {% if product.category %}
+            {{ product.category.name }}
         {% endif %}
 
-        {{ product[0].category ? product[0].category.description }}
+        {{ product.category ? product.category.description }}
 
         {#{% if product[0] == false %}#}
             {#<p>Our website is in maintenance mode. Please, come back later.</p>#}

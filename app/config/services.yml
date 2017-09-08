@@ -16,3 +16,34 @@ services:
 #    weather.service:
 #        class:     App\ProjectBundle\Services\WeatherService
 #        arguments: []
+
+    kernel.listener.product_watch_listener:
+        class: App\ProjectBundle\EventListener\ProductWatchListener
+        arguments:
+            - @doctrine.orm.entity_manager
+        tags:
+            - { name: kernel.event_listener, event: product.watch, method: onProductWatch }
+            
+    product_subscriber:
+        class: App\ProjectBundle\EventSubscriber\ProductSubscriber
+        arguments: ["@logger"]
+        tags:
+            - { name: kernel.event_subscriber }
+
+    kernel.listener.producer_watch_listener:
+        class: App\ProjectBundle\EventListener\ProducerWatchListener
+        arguments:
+            - @doctrine.orm.entity_manager
+        tags:
+            - { name: kernel.event_listener, event: producer.watch, method: onProducerWatch }
+
+    producer_subscriber:
+            class: App\ProjectBundle\EventSubscriber\ProducerSubscriber
+            arguments: ["@logger"]
+            tags:
+                - { name: kernel.event_subscriber }
+
+    product.service:
+        class:     App\ProjectBundle\Services\ProductService
+        arguments:
+            - '@doctrine.orm.entity_manager'

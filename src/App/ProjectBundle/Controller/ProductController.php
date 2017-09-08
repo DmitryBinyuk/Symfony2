@@ -10,6 +10,8 @@ use App\ProjectBundle\Entity\Product;
 use App\ProjectBundle\Services\WeatherService;
 use Symfony\Component\HttpFoundation\Response;
 use App\ProjectBundle\Entity\DeliveryService;
+use App\ProjectBundle\Event\ProductWatchEvent;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class ProductController extends Controller
 {
@@ -32,6 +34,19 @@ class ProductController extends Controller
 
         $weatherService = $this->get('weather.service');
 //        $weather = $weatherService->getWeather();
+
+        //Get related products
+        $productService = $this->get('product.service');
+        $relatedProducts = $productService->getRelatedProducts($id);
+	
+	    //Dispatch Event
+	    $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+
+	    $event = new ProductWatchEvent($product);
+	
+	    $dispatcher = $this->get('event_dispatcher');
+	
+        $dispatcher->dispatch(ProductWatchEvent::NAME, $event);
 
         return $this->render('AppProjectBundle:Product:show.html.twig', array('product' => $product));//, 'weather' => $weather));
     }
