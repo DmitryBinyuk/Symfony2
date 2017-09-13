@@ -22,14 +22,25 @@ class ProductService
     {
         $product = $this->em->getRepository(Product::class)->find($productId);
 
-        $relatedProducts = $this->em->getRepository(Product::class)
-            ->findBy(
-                array(
-                    'category' => $product->getCategory(),
-                )
-            );
+        if(!is_null($product->getCategory())){
 
-        return $relatedProducts;
+
+            $relatedProducts = $this->em->getRepository(Product::class)
+                                        ->findRelated(['category' => $product->getCategory()->getId(), 'id' => $product->getId()]);
+
+
+//            $relatedProducts = $this->em->getRepository(Product::class)
+//                ->findBy(
+//                    array(
+//                        'category' => $product->getCategory()->getId(),
+//                    )
+//                );
+
+            return $relatedProducts;
+        }
+
+        return [];
+
     }
 }
 

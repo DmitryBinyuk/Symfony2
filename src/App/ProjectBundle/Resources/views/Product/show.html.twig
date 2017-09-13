@@ -6,7 +6,7 @@
 
 <div class="row">
 
-    <div class="span12 col-md-12">
+    <div class="span8 col-md-8">
         <h2>{{product.name}}</h2>
         <div class="span3 col-md-4">
             
@@ -15,37 +15,74 @@
             <p>{{ product.description }}</p>
 
         </div>
+    </div>
 
+    <div class="col-md-4 pull-right">
+        <h2>Managers:</h2>
+        {% for manager in managers %}
+            <div class="row managers-product">
+                <p>{{ manager.fullname }}</p>
+                <p>{{ manager.position }}</p>
+                <p>{{ manager.phone }}</p>
+                {# for attributes with special chars cool:) #}
+                <p>{{ attribute(manager, 'contactEmail') }}</p>
+
+            </div>
+        {% endfor %}
+
+        {% if discount is not null %}
+            <h2>Available<br> discount:</h2>
+            <div class="row managers-product">
+                <p>{{ discount.title }}</p>
+                <p>Total count: {{ discount.totalCount }}</p>
+                <p>Total price: {{ discount.totalPrice }}</p>
+                <p>Discount percent: {{ discount.discountSizePercent }}</p>
+            </div>
+        {% endif %}
+    </div>
+
+</div>
+
+<div class="row">
         <div class="col-md-8">
 
-        <select name="country"data-width="100%">
-            {#{% for key,val in form.country.vars.choices %}
-                 <option value="{{ val.value }}" {{  form.country.vars.value ? ' selected ' :(val.value == form.country.vars.value ? ' selected ' : '') }}>{{ val.label | trans }}</option>
-            {% endfor %}#}
-        </select>
+            <select name="country"data-width="100%">
+                {% for value in categories %}
+                     <option value="{{ value.id }}" {{ (product.category.id == value.id) ? ' selected ' : '' }}>{{ value.name }}</option>
+                {% endfor %}
+            </select>
+            <br>
+            {% if product.category %}
+                {{ product.category.name }}
+            {% endif %}
 
-        {% if product.category %}
-            {{ product.category.name }}
-        {% endif %}
+            {{ product.category ? product.category.description }}
 
-        {{ product.category ? product.category.description }}
+            {% if relatedProducts|length >0 %}
+                <h2>Related products:</h2>
+                <ul>
+                    {% for product in relatedProducts %}
+                        <li>{{ product.name }}</li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
 
-        {#{% if product[0] == false %}#}
-            {#<p>Our website is in maintenance mode. Please, come back later.</p>#}
-        {#{% endif %}#}
+            {#{% if product[0] == false %}#}
+                {#<p>Our website is in maintenance mode. Please, come back later.</p>#}
+            {#{% endif %}#}
 
-        {#<div class="span3 col-lg-1 pull-right">#}
-            {#<h5>Weather:</h5>#}
-            {#<p>#}
-                {#<img src="{{ weather['icon'] }}" alt="Weather icon" height="42" width="42">#}
-                {#{{ weather['temperature'] }}#}
-            {#</p>#}
-            {#<p>Measurement time: {{ weather['time'] }}</p>#}
-            {#<p>Wind speed: {{ weather['wind_speed'] }}</p>#}
-            {#<p>Pressure: {{ weather['pressure'] }}</p>#}
-            {#<p>{{ weather['description'] }}</p>#}
-        {#</div>#}
+            {#<div class="span3 col-lg-1 pull-right">#}
+                {#<h5>Weather:</h5>#}
+                {#<p>#}
+                    {#<img src="{{ weather['icon'] }}" alt="Weather icon" height="42" width="42">#}
+                    {#{{ weather['temperature'] }}#}
+                {#</p>#}
+                {#<p>Measurement time: {{ weather['time'] }}</p>#}
+                {#<p>Wind speed: {{ weather['wind_speed'] }}</p>#}
+                {#<p>Pressure: {{ weather['pressure'] }}</p>#}
+                {#<p>{{ weather['description'] }}</p>#}
+            {#</div>#}
         </div>
-    </div> 
+</div>
 </div>    
 {% endblock %}

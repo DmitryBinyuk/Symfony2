@@ -2,7 +2,9 @@
 
 namespace App\ProjectBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use App\ProjectBundle\Entity\Product;
 
 /**
  * Discount
@@ -49,6 +51,16 @@ class Discount
      */
     private $discountSizePercent;
 
+    /**
+     * One discount to many products
+     * @ORM\OneToMany(targetEntity="Product", mappedBy="discount")
+     */
+    private $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -155,5 +167,38 @@ class Discount
     {
         return $this->discountSizePercent;
     }
-}
 
+    /**
+     * Add product
+     *
+     * @param \App\ProjectBundle\Entity\Product $product
+     *
+     * @return Discount
+     */
+    public function addProduct(\App\ProjectBundle\Entity\Product $product)
+    {
+        $this->products[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product
+     *
+     * @param \App\ProjectBundle\Entity\Product $product
+     */
+    public function removeProduct(\App\ProjectBundle\Entity\Product $product)
+    {
+        $this->products->removeElement($product);
+    }
+
+    /**
+     * Get products
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+}

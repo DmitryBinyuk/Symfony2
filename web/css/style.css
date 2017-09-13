@@ -1513,3 +1513,11 @@ form#newsletter label {
   -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
+.managers-product {
+  border-radius: 10px;
+  border-color: #434343;
+  border-style: solid;
+  margin-top: 15px;
+  text-align: center;
+}
+

@@ -48,7 +48,23 @@ class ProductController extends Controller
 	
         $dispatcher->dispatch(ProductWatchEvent::NAME, $event);
 
-        return $this->render('AppProjectBundle:Product:show.html.twig', array('product' => $product));//, 'weather' => $weather));
+        //Get all categories
+        $categories = $this->getDoctrine()->getRepository(ProductCategory::class)->findAll();
+
+        $managers = $product->getManagers();
+
+        $discount = $product->getDiscount();
+
+//        foreach ($managers as $man){
+//            echo 1;
+//        }
+
+        return $this->render('AppProjectBundle:Product:show.html.twig',
+                            array('product' => $product,
+                                  'relatedProducts' => $relatedProducts,
+                                  'categories' => $categories,
+                                  'managers' => $managers,
+                                  'discount' => $discount));//, 'weather' => $weather));
     }
 
     /**

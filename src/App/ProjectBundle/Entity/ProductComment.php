@@ -1,16 +1,17 @@
 <?php
 
-namespace AppBundle\Entity;
+namespace App\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\ProjectBundle\Entity\Comment;
 
 /**
- * BlogPost
+ * ProductComment
  *
  * @ORM\Table()
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\ProjectBundle\Entity\ProductCommentRepository")
  */
-class BlogPost
+class ProductComment extends Comment
 {
     /**
      * @var integer
@@ -31,17 +32,9 @@ class BlogPost
     /**
      * @var string
      *
-     * @ORM\Column(name="body", type="text")
+     * @ORM\Column(name="body", type="string", length=255)
      */
     private $body;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="draft", type="boolean")
-     */
-    private $draft;
-
 
     /**
      * Get id
@@ -58,7 +51,7 @@ class BlogPost
      *
      * @param string $title
      *
-     * @return BlogPost
+     * @return ProductComment
      */
     public function setTitle($title)
     {
@@ -82,7 +75,7 @@ class BlogPost
      *
      * @param string $body
      *
-     * @return BlogPost
+     * @return ProductComment
      */
     public function setBody($body)
     {
@@ -99,45 +92,6 @@ class BlogPost
     public function getBody()
     {
         return $this->body;
-    }
-
-    /**
-     * Set draft
-     *
-     * @param boolean $draft
-     *
-     * @return BlogPost
-     */
-    public function setDraft($draft)
-    {
-        $this->draft = $draft;
-
-        return $this;
-    }
-
-    /**
-     * Get draft
-     *
-     * @return boolean
-     */
-    public function getDraft()
-    {
-        return $this->draft;
-    }
-    
-    /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="blogPosts")
-     */
-    private $category;
-
-    public function setCategory(Category $category)
-    {
-        $this->category = $category;
-    }
-
-    public function getCategory()
-    {
-        return $this->category;
     }
 }
 

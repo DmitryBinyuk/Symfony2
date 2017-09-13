@@ -5,6 +5,11 @@ namespace App\ProjectBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Sonata\MediaBundle\Model\MediaInterface;
 use App\ProjectBundle\Entity\DeliveryService;
+use Doctrine\Common\Collections\ArrayCollection;
+use App\ProjectBundle\Entity\Manager;
+use App\ProjectBundle\Entity\Discount;
+use App\ProjectBundle\Entity\ProductCategory;
+use App\ProjectBundle\Entity\ProductComment;
 
 /**
  * Product
@@ -46,7 +51,7 @@ class Product
 
     /**
      * 
-     * @ORM\ManyToOne(targetEntity="App\ProjectBundle\Entity\ProductCategory", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="ProductCategory", inversedBy="products")
      * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
      * 
      */
@@ -59,16 +64,37 @@ class Product
      */
     private $watches;
 
+//    /**
+//     * @ORM\ManyToMany(targetEntity="DeliveryService", mappedBy="products")
+//     */
+//    private $deliveryServices;
+
     /**
-     * @ORM\ManyToMany(targetEntity="DeliveryService", mappedBy="products")
+     * Many products to many managers
+     * @ORM\ManyToMany(targetEntity="Manager", mappedBy="products")
      */
-    private $deliveryServices;
+    private $managers;
+
+    /**
+     * Many products to one discount
+     * @ORM\ManyToOne(targetEntity="Discount", inversedBy="products")
+     * @ORM\JoinColumn(name="discount_id", referencedColumnName="id")
+     */
+    private $discount;
+
+    /**
+     * One product can have many comments
+     * @ORM\OneToMany(targetEntity="ProductComment", mappedBy="product")
+     */
+    private $comments;
 
     public function __construct() {
-        $this->deliveryServices = new ArrayCollection();
+//        $this->deliveryServices = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->managers = new ArrayCollection();
+        $this->comments = new ArrayCollection();
     }
 
-    public function addCategory(\App\ProjectBundle\Entity\ProductCategory $category)
+    public function addCategory(ProductCategory $category)
     {
         $this->category[] = $category;
 
@@ -257,5 +283,63 @@ class Product
     public function getDeliveryServices()
     {
         return $this->deliveryServices;
+    }
+
+    /**
+     * Add manager
+     *
+     * @param \App\ProjectBundle\Entity\Manager $manager
+     *
+     * @return Product
+     */
+    public function addManager(\App\ProjectBundle\Entity\Manager $manager)
+    {
+        $this->managers[] = $manager;
+
+        return $this;
+    }
+
+    /**
+     * Remove manager
+     *
+     * @param \App\ProjectBundle\Entity\Manager $manager
+     */
+    public function removeManager(\App\ProjectBundle\Entity\Manager $manager)
+    {
+        $this->managers->removeElement($manager);
+    }
+
+    /**
+     * Get managers
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getManagers()
+    {
+        return $this->managers;
+    }
+
+    /**
+     * Set discount
+     *
+     * @param \App\ProjectBundle\Entity\Discount $discount
+     *
+     * @return Product
+     */
+    public function setDiscount(\App\ProjectBundle\Entity\Discount $discount = null)
+    {
+        $this->discount = $discount;
+
+        return $this;
+    }
+
+    /**
+     * Get discount
+     *
+     * @return \App\ProjectBundle\Entity\Discount
+     */
+    public function getDiscount()
+    {
+        return $this->discount;
     }
 }

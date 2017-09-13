@@ -3,14 +3,19 @@
 namespace App\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\ProjectBundle\Entity\Product;
 
 /**
  * Comment
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\ProjectBundle\Entity\CommentRepository")
+ * @ORM\InheritanceType("SINGLE_TABLE")
+ * @ORM\DiscriminatorColumn(name="comment_type", type="string")
+ * @ORM\DiscriminatorMap({"productComment" = "ProductComment"})
  */
-class Comment
+
+abstract class Comment
 {
     /**
      * @var integer
@@ -35,6 +40,12 @@ class Comment
      */
     private $body;
 
+    /**
+     * Many comments to one product
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="comments")
+     * @ORM\JoinColumn(name="product_id")
+     */
+    private $product;
 
     /**
      * Get id

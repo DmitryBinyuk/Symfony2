@@ -3,6 +3,8 @@
 namespace App\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use App\ProjectBundle\Entity\Product;
 
 /**
  * Manager
@@ -49,6 +51,17 @@ class Manager
      */
     private $contactEmail;
 
+    /**
+     * Many products to many managers
+     * @ORM\ManyToMany(targetEntity="Product", inversedBy="managers")
+     * @ORM\JoinTable(name="products_managers")
+     */
+    private $products;
+
+    public function __construct()
+    {
+        $this->products = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -155,5 +168,38 @@ class Manager
     {
         return $this->contactEmail;
     }
-}
 
+    /**
+     * Add product
+     *
+     * @param \App\ProjectBundle\Entity\Product $product
+     *
+     * @return Manager
+     */
+    public function addProduct(\App\ProjectBundle\Entity\Product $product)
+    {
+        $this->products[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product
+     *
+     * @param \App\ProjectBundle\Entity\Product $product
+     */
+    public function removeProduct(\App\ProjectBundle\Entity\Product $product)
+    {
+        $this->products->removeElement($product);
+    }
+
+    /**
+     * Get products
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+}
