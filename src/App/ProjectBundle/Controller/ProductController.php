@@ -55,9 +55,11 @@ class ProductController extends Controller
 
         $discount = $product->getDiscount();
 
-//        foreach ($managers as $man){
-//            echo 1;
-//        }
+        $comments = $product->getComments();
+
+        foreach ($comments as $comment){
+            echo 1;
+        }
 
         return $this->render('AppProjectBundle:Product:show.html.twig',
                             array('product' => $product,

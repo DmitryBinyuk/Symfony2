@@ -9,7 +9,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use App\ProjectBundle\Entity\Manager;
 use App\ProjectBundle\Entity\Discount;
 use App\ProjectBundle\Entity\ProductCategory;
-use App\ProjectBundle\Entity\ProductComment;
+use App\ProjectBundle\Entity\Comment;
 
 /**
  * Product
@@ -84,7 +84,7 @@ class Product
 
     /**
      * One product can have many comments
-     * @ORM\OneToMany(targetEntity="ProductComment", mappedBy="product")
+     * @ORM\OneToMany(targetEntity="Comment", mappedBy="product")
      */
     private $comments;
 
@@ -341,5 +341,39 @@ class Product
     public function getDiscount()
     {
         return $this->discount;
+    }
+
+    /**
+     * Add comment
+     *
+     * @param \App\ProjectBundle\Entity\Comment $comment
+     *
+     * @return Product
+     */
+    public function addComment(\App\ProjectBundle\Entity\Comment $comment)
+    {
+        $this->comments[] = $comment;
+
+        return $this;
+    }
+
+    /**
+     * Remove comment
+     *
+     * @param \App\ProjectBundle\Entity\Comment $comment
+     */
+    public function removeComment(\App\ProjectBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
+    }
+
+    /**
+     * Get comments
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getComments()
+    {
+        return $this->comments;
     }
 }

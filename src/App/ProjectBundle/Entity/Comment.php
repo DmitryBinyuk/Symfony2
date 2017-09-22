@@ -4,6 +4,7 @@ namespace App\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use App\ProjectBundle\Entity\Product;
+use App\ProjectBundle\Entity\ProductComment;
 
 /**
  * Comment
@@ -104,5 +105,28 @@ abstract class Comment
     {
         return $this->body;
     }
-}
 
+    /**
+     * Set product
+     *
+     * @param \App\ProjectBundle\Entity\Product $product
+     *
+     * @return Comment
+     */
+    public function setProduct(\App\ProjectBundle\Entity\Product $product = null)
+    {
+        $this->product = $product;
+
+        return $this;
+    }
+
+    /**
+     * Get product
+     *
+     * @return \App\ProjectBundle\Entity\Product
+     */
+    public function getProduct()
+    {
+        return $this->product;
+    }
+}

@@ -1,3 +1,8 @@
+custom_admin:
+    resource: "@CustomAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /custom-admin
+
 app_project:
     resource: "@AppProjectBundle/Controller/"
     type:     annotation
