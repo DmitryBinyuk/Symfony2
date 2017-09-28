@@ -1,0 +1,19 @@
+{% extends "::base-custom-admin.html.twig" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container">
+            <ul>
+                <li>{{ product.name }}</li>
+                <li>{{ product.description }}</li>
+                <li>{{ product.price }}</li>
+                <li>
+                    {% if product.category is not null %}
+                        {{ product.category.name }}
+                    {% endif %}
+                </li>
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}
