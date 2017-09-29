@@ -62,7 +62,7 @@ class Product
      *
      * @ORM\Column(name="watches", type="integer")
      */
-    private $watches;
+    private $watches = 0;
 
 //    /**
 //     * @ORM\ManyToMany(targetEntity="DeliveryService", mappedBy="products")

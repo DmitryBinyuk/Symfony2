@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="container">
             <h2>Products</h2>
-
+            <h3><a href="{{ path('admin-products-create') }}">Create product</a></h3>
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -28,12 +28,46 @@
                             </td>
                             <td>
                                 <a href="{{ path('admin-products-show', {'id': product.id }) }}">view</a>
-                                <a href="{{ path('admin-products-create') }}">create</a>
+                                <a href="{{ path('admin-products-update', {'id': product.id }) }}">update</a>
+                                <a type="button" class="btn delete-product btn-info btn-lg" data-product-id= {{ product.id }} data-toggle="modal" data-target="#deleteProductModal">
+                                    delete
+                                </a>
+                                <a class="delete-product" href="#">rata</a>
+
                             </td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
+
+            <!-- Modal -->
+            <div id="deleteProductModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Product delete</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you really want to delete this product?</p>
+                        </div>
+                        <div class="modal-footer">
+                            {#<a class="btn btn-default" href="{{ path('admin-products-delete', {'id': product.id }) }}">delete</a>#}
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
+<script>
+    $(document).ready(function() {
+        $('.delete-product').click(function () {
+            console.log('ratata');
+        });
+    });
+</script>
 {% endblock %}

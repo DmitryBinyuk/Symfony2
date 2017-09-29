@@ -36,6 +36,10 @@ class ProductController extends Controller
             ->add('name', 'text')
             ->add('description', 'text')
             ->add('price', 'text')
+            ->add('category', 'entity', array(
+                'class' => 'AppProjectBundle:ProductCategory',
+                'choice_label' => 'name',
+            ))
             ->add('save', 'submit', array('label' => 'Create Product'))
             ->getForm();
 
@@ -46,10 +50,6 @@ class ProductController extends Controller
             $product = $form->getData();
 
             $em = $this->getDoctrine()->getManager();
-
-//            $product->setName($data['name']);
-//            $product->setDescription($data['description']);
-//            $product->setPrice($data['price']);
 
             $em->persist($product);
             $em->flush();
@@ -63,12 +63,49 @@ class ProductController extends Controller
     }
 
     /**
-     * @Route("/products/update", name="admin-products-update")
+     * @Route("/products/update/{id}", name="admin-products-update")
      * @Template()
      */
-    public function updateAction()
+    public function updateAction(Request $request, $id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository(Product::class)->find($id);
 
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        $form = $this->createFormBuilder($product)
+            ->add('name', 'text')
+            ->add('description', 'text')
+            ->add('price', 'text')
+            ->add('category', 'entity', array(
+                'class' => 'AppProjectBundle:ProductCategory',
+                'choice_label' => 'name',
+                'placeholder' => 'Choose category',
+            ))
+            ->add('save', 'submit', array('label' => 'Update'))
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $product = $form->getData();
+
+            $em = $this->getDoctrine()->getManager();
+
+            $em->persist($product);
+            $em->flush();
+
+            return $this->redirectToRoute('admin-products');
+        }
+
+        return $this->render('CustomAdminBundle:Product:update.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     /**
@@ -83,6 +120,15 @@ class ProductController extends Controller
         $product = $repository->find($id);
 
         return $this->render('CustomAdminBundle:Product:show.html.twig', array('product' => $product));
+    }
+
+    /**
+     * @Route("/products/delete/{id}", name="admin-products-delete")
+     * @Template()
+     */
+    public function deleteAction()
+    {
+
     }
 
 }
