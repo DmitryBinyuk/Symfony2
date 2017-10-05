@@ -1,0 +1,59 @@
+{% extends "::base-custom-admin.html.twig" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container">
+            <h2>Managers</h2>
+            <h3><a class="btn btn-info btn-md" href="{{ path('admin-managers-create') }}">Create manager</a></h3>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Full Name</th>
+                    <th>Position</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for manager in managers %}
+                        <tr>
+                            <td>{{ manager.fullname }}</td>
+                            <td>{{ manager.position }}</td>
+                            <td>{{ manager.phone }}</td>
+                            <td>{{ manager.contactEmail }}</td>
+                            <td>
+                                <a class="btn btn-primary btn-md" href="{{ path('admin-managers-show', {'id': manager.id }) }}">view</a>
+                                <a class="btn btn-success btn-md" href="{{ path('admin-managers-update', {'id': manager.id }) }}">update</a>
+                                <a type="button" class="btn delete-producer btn-danger btn-md" data-producer-id= {{ producer.id }} data-toggle="modal" data-target="#deleteProducerModal">
+                                    delete
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Modal -->
+            <div id="deleteProducerModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Producer delete</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you really want to delete this producer?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-default delete-producer-submit" href="#">delete</a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

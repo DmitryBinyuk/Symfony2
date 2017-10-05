@@ -1,0 +1,16 @@
+{% extends "::base-custom-admin.html.twig" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container">
+            <a class="btn btn-info btn-md" href="{{ path('admin-managers') }}">Back</a>
+            <ul>
+                <li>{{ manager.fullname }}</li>
+                <li>{{ manager.position }}</li>
+                <li>{{ manager.phone }}</li>
+                <li>{{ manager.contactEmail }}</li>
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}

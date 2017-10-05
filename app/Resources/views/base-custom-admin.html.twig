@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="/css/simple-sidebar.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-
-    <link rel="stylesheet" href="{{ asset('js/admin.js') }}" />
 </head>
     <body>
         <div id="wrapper" class="col-md-12">
@@ -26,13 +23,13 @@
                         <a href="#">Dashboard</a>
                     </li>
                     <li>
-                        <a href="{{ path('admin-products') }}">Products1</a>
+                        <a href="{{ path('admin-products') }}">Products</a>
                     </li>
                     <li>
-                        <a href="#">Producers</a>
+                        <a href="{{ path('admin-producers') }}">Producers</a>
                     </li>
                     <li>
-                        <a href="#">Managers</a>
+                        <a href="{{ path('admin-managers') }}">Managers</a>
                     </li>
                     <li>
                         <a href="#">Categories</a>
@@ -52,5 +49,6 @@
 
         </div>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="{{ asset('js/admin.js') }}"></script>
     </body>
 </html>

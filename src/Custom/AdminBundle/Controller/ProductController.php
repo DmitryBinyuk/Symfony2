@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use App\ProjectBundle\Entity\Product;
+use App\ProjectBundle\Entity\Comment;
 use Symfony\Component\HttpFoundation\Request;
 
 class ProductController extends Controller
@@ -126,9 +127,29 @@ class ProductController extends Controller
      * @Route("/products/delete/{id}", name="admin-products-delete")
      * @Template()
      */
-    public function deleteAction()
+    public function deleteAction($id)
     {
+        $em = $this->getDoctrine()->getManager();
+        $product = $em->getRepository(Product::class)->find($id);
 
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        $comments = $product->getComments();
+
+        foreach ($comments as $comment){
+            $product->removeComment($comment);
+            $comment->setProduct(null);
+        }
+
+
+//        $em->remove($product);
+        $em->flush();
+
+        return $this->redirectToRoute('admin-products');
     }
 
 }

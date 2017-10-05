@@ -55,7 +55,7 @@ class Producer
      *
      * @ORM\Column(name="watches", type="integer")
      */
-    private $watches;
+    private $watches = 0;
 
     public function __construct() {
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
