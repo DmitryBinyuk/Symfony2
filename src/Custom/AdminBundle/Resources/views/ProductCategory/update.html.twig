@@ -1,0 +1,12 @@
+{% extends "::base-custom-admin.html.twig" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container">
+            <a class="btn btn-info btn-md" href="{{ path('admin-product-categories') }}">Back</a>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
+{% endblock %}

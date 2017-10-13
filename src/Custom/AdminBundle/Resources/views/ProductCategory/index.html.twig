@@ -1,0 +1,54 @@
+{% extends "::base-custom-admin.html.twig" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container">
+            <h2>Products categories</h2>
+            <h3><a class="btn btn-info btn-md" href="{{ path('admin-product-categories-create') }}">Create category</a></h3>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Description</th>
+                    <th>Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for productCategory in productCategories %}
+                        <tr>
+                            <td>{{ productCategory.name }}</td>
+                            <td>{{ productCategory.description }}</td>
+                            <td>
+                                <a class="btn btn-primary btn-md" href="{{ path('admin-product-categories-show', {'id': productCategory.id }) }}">view</a>
+                                <a class="btn btn-success btn-md" href="{{ path('admin-product-categories-update', {'id': productCategory.id }) }}">update</a>
+                                <a type="button" class="btn delete-product-category btn-danger btn-md" data-product-category-id= {{ productCategory.id }} data-toggle="modal" data-target="#deleteProductCategoryModal">
+                                    delete
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Modal -->
+            <div id="deleteProductCategoryModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Product delete</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you really want to delete this product category?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-default delete-product-category-submit" href="#">delete</a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

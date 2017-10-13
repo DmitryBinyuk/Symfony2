@@ -25,7 +25,7 @@
                             <td>
                                 <a class="btn btn-primary btn-md" href="{{ path('admin-managers-show', {'id': manager.id }) }}">view</a>
                                 <a class="btn btn-success btn-md" href="{{ path('admin-managers-update', {'id': manager.id }) }}">update</a>
-                                <a type="button" class="btn delete-producer btn-danger btn-md" data-producer-id= {{ producer.id }} data-toggle="modal" data-target="#deleteProducerModal">
+                                <a type="button" class="btn delete-manager btn-danger btn-md" data-manager-id= {{ manager.id }} data-toggle="modal" data-target="#deleteManagerModal">
                                     delete
                                 </a>
                             </td>
@@ -35,18 +35,18 @@
             </table>
 
             <!-- Modal -->
-            <div id="deleteProducerModal" class="modal fade" role="dialog">
+            <div id="deleteManagerModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Producer delete</h4>
+                            <h4 class="modal-title">Manager delete</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Do you really want to delete this producer?</p>
+                            <p>Do you really want to delete this manager?</p>
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-default delete-producer-submit" href="#">delete</a>
+                            <a class="btn btn-default delete-manager-submit" href="#">delete</a>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>

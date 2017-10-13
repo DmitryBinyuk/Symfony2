@@ -144,7 +144,6 @@ class ManagerController extends Controller
             $em->persist($manager);
         }
 
-
 //        $em->remove($producer);
         $em->flush();
 

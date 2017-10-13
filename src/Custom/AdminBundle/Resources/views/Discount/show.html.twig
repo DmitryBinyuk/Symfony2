@@ -1,0 +1,16 @@
+{% extends "::base-custom-admin.html.twig" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container">
+            <a class="btn btn-info btn-md" href="{{ path('admin-discounts') }}">Back</a>
+            <ul>
+                <li>{{ discount.title }}</li>
+                <li>{{ discount.totalCount }}</li>
+                <li>{{ discount.totalPrice }}</li>
+                <li>{{ discount.discountSizePercent }}</li>
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}
