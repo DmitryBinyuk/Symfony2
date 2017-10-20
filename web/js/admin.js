@@ -54,4 +54,15 @@ $(document).ready(function () {
     $('.delete-discount-submit').click(function () {
         $('#deleteDiscountModal').modal('hide');
     });
+
+    //User delete
+    $('.delete-user').click(function () {
+        var userDeleteId = $(this).attr("data-user-id");
+
+        $(".delete-user-submit").attr("href", "/custom-admin/users/delete/"+userDeleteId);
+    });
+
+    $('.delete-user-submit').click(function () {
+        $('#deleteUserModal').modal('hide');
+    });
 });

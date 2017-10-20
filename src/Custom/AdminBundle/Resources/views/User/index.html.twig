@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="container">
             <h2>Users</h2>
-            <h3><a class="btn btn-info btn-md" href="{{ path('admin-discounts-create') }}">Create discount</a></h3>
+            <h3><a class="btn btn-info btn-md" href="{{ path('admin-users-create') }}">Create user</a></h3>
             <table class="table table-bordered">
                 <thead>
                 <tr>
@@ -26,10 +26,10 @@
                             <td>{{ user.phone }}</td>
                             <td>
                                 <a class="btn btn-primary btn-md" href="{{ path('admin-users-show', {'id': user.id }) }}">view</a>
-                                {#<a class="btn btn-success btn-md" href="{{ path('admin-discounts-update', {'id': discount.id }) }}">update</a>#}
-                                {#<a type="button" class="btn delete-discount btn-danger btn-md" data-discount-id= {{ discount.id }} data-toggle="modal" data-target="#deleteDiscountModal">#}
-                                    {#delete#}
-                                {#</a>#}
+                                <a class="btn btn-success btn-md" href="{{ path('admin-users-update', {'id': user.id }) }}">update</a>
+                                <a type="button" class="btn delete-user btn-danger btn-md" data-user-id= {{ user.id }} data-toggle="modal" data-target="#deleteUserModal">
+                                    delete
+                                </a>
                             </td>
                         </tr>
                     {% endfor %}
@@ -37,7 +37,7 @@
             </table>
 
             <!-- Modal -->
-            <div id="deleteDiscountModal" class="modal fade" role="dialog">
+            <div id="deleteUserModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -45,10 +45,10 @@
                             <h4 class="modal-title">Discount delete</h4>
                         </div>
                         <div class="modal-body">
-                            <p>Do you really want to delete this discount?</p>
+                            <p>Do you really want to delete this user?</p>
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-default delete-discount-submit" href="#">delete</a>
+                            <a class="btn btn-default delete-user-submit" href="#">delete</a>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
