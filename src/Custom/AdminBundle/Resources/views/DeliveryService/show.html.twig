@@ -1,0 +1,14 @@
+{% extends "::base-custom-admin.html.twig" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container">
+            <a class="btn btn-info btn-md" href="{{ path('admin-delivery-services') }}">Back</a>
+            <ul>
+                <li>{{ deliveryService.name }}</li>
+                <li>{{ deliveryService.pricePerKilometer }}</li>
+            </ul>
+
+        </div>
+    </div>
+{% endblock %}

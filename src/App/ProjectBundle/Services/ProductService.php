@@ -28,14 +28,6 @@ class ProductService
             $relatedProducts = $this->em->getRepository(Product::class)
                                         ->findRelated(['category' => $product->getCategory()->getId(), 'id' => $product->getId()]);
 
-
-//            $relatedProducts = $this->em->getRepository(Product::class)
-//                ->findBy(
-//                    array(
-//                        'category' => $product->getCategory()->getId(),
-//                    )
-//                );
-
             return $relatedProducts;
         }
 

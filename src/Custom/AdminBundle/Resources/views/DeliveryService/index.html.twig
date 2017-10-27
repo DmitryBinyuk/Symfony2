@@ -1,0 +1,66 @@
+{% extends "::base-custom-admin.html.twig" %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="container">
+            <h2>Delivery Services</h2>
+            <h3><a class="btn btn-info btn-md" href="{{ path('admin-delivery-services-create') }}">Create Delivery Service</a></h3>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price per kilometer</th>
+                    <th>Options</th>
+                </tr>
+                </thead>
+                <tbody>
+                    {% for deliveryService in deliveryServices %}
+                        <tr>
+                            <td>{{ deliveryService.name }}</td>
+                            <td>{{ deliveryService.pricePerKilometer }}</td>
+                            <td>
+                                <a class="btn btn-primary btn-md" href="{{ path('admin-delivery-services-show', {'id': deliveryService.id }) }}">view</a>
+                                <a class="btn btn-success btn-md" href="{{ path('admin-delivery-services-update', {'id': deliveryService.id }) }}">update</a>
+                                {#<a type="button" class="btn delete-product btn-danger btn-md" data-product-id= {{ deliveryService.id }} data-toggle="modal" data-target="#deleteProductModal">#}
+                                    {#delete#}
+                                {#</a>#}
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+            <!-- Modal -->
+            <div id="deleteProductModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    {#{% set productDeleteId = "<script>document.write(productDeleteId)</script>" %}#}
+
+                    {#{% if productDeleteId is not defined %}#}
+                        {#{% set productDeleteId = 0 %}#}
+                    {#{% endif %}#}
+
+
+                    {#<script>#}
+                        {#var productDeleteId=0;#}
+                    {#</script>#}
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Product delete</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p>Do you really want to delete this product?</p>
+                        </div>
+                        <div class="modal-footer">
+                            <a class="btn btn-default delete-product-submit" href="#">delete</a>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
