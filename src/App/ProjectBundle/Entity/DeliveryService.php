@@ -127,5 +127,14 @@ class DeliveryService
     {
         $this->products->removeElement($product);
     }
-}
 
+    /**
+     * Get products
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getProducts()
+    {
+        return $this->products;
+    }
+}

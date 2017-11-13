@@ -23,7 +23,9 @@
         "jms/serializer-bundle": "~0.13",
         "sonata-project/media-bundle": "^2.3",
         "sonata-project/intl-bundle": "^2.2",
-        "knplabs/knp-paginator-bundle": "^2.5"
+        "knplabs/knp-paginator-bundle": "^2.5",
+        "friendsofsymfony/comment-bundle": "^2.0",
+        "doctrine/doctrine-migrations-bundle": "^1.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

@@ -2,7 +2,9 @@
 
 namespace App\ProjectBundle\Controller;
 
+use App\ProjectBundle\Entity\Comment;
 use App\ProjectBundle\Entity\ProductCategory;
+use Buzz\Message\Request;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -12,6 +14,8 @@ use Symfony\Component\HttpFoundation\Response;
 use App\ProjectBundle\Entity\DeliveryService;
 use App\ProjectBundle\Event\ProductWatchEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use App\ProjectBundle\Entity\User;
 
 class ProductController extends Controller
 {
@@ -30,7 +34,14 @@ class ProductController extends Controller
             ->setParameter('id', $id);
 
         $product = $qb->getQuery();
+
         $product = $product->getResult();
+
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
 
         $weatherService = $this->get('weather.service');
 //        $weather = $weatherService->getWeather();
@@ -56,17 +67,17 @@ class ProductController extends Controller
         $discount = $product->getDiscount();
 
         $comments = $product->getComments();
-
-        foreach ($comments as $comment){
-            echo 1;
-        }
+//        foreach ($comments as $comment){
+//            var_dump($comment->getUser()->getId());
+//        }
 
         return $this->render('AppProjectBundle:Product:show.html.twig',
                             array('product' => $product,
                                   'relatedProducts' => $relatedProducts,
                                   'categories' => $categories,
                                   'managers' => $managers,
-                                  'discount' => $discount));//, 'weather' => $weather));
+                                  'discount' => $discount,
+                                  'comments' => $comments));//, 'weather' => $weather));
     }
 
     /**
@@ -112,5 +123,44 @@ class ProductController extends Controller
         $em->flush();
 
         return new Response('Ok');
+    }
+
+    /**
+     * @Route("/product/{id}/add-comment")
+     * @Method("POST")
+     */
+    public function addComment($id)//Request $request,
+    {
+        $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
+
+        if (!$product) {
+            throw $this->createNotFoundException(
+                'No product found for id '.$id
+            );
+        }
+
+        $user = $this->get('security.token_storage')->getToken()->getUser();
+
+//        $user = $this->getDoctrine()->getRepository(User::class)->find(1);
+
+        $request = $this->get('request');
+
+        $comment = new Comment();
+        $comment->setTitle($request->request->get('title'));
+        $comment->setBody($request->request->get('title'));
+        $comment->setProduct($product);
+        $comment->setUser($user);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($comment);
+        $em->flush();
+
+        $response = new Response(
+            'Ok',
+            Response::HTTP_OK,
+            array('content-type' => 'text/html')
+        );
+
+        $response->send();
     }
 }

@@ -3,13 +3,13 @@ namespace App\ProjectBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Application\Sonata\UserBundle\Entity\User as FosUser;
+use FOS\UserBundle\Entity\User as BaseUser;
 
 /**
- * User
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * @ORM\Table(name="fos_user_user")
  */
-class User extends FosUser
+class User extends BaseUser
 {
     /**
      * @ORM\Id

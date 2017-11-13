@@ -11,12 +11,9 @@ use App\ProjectBundle\Entity\ProductComment;
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="App\ProjectBundle\Entity\CommentRepository")
- * @ORM\InheritanceType("SINGLE_TABLE")
- * @ORM\DiscriminatorColumn(name="comment_type", type="string")
- * @ORM\DiscriminatorMap({"productComment" = "ProductComment"})
  */
 
-abstract class Comment
+class Comment
 {
     /**
      * @var integer
@@ -47,6 +44,13 @@ abstract class Comment
      * @ORM\JoinColumn(name="product_id")
      */
     private $product;
+
+    /**
+     * Many comments to one user
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="comments")
+     * @ORM\JoinColumn(name="user_id")
+     */
+    private $user;
 
     /**
      * Get id
@@ -128,5 +132,29 @@ abstract class Comment
     public function getProduct()
     {
         return $this->product;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \App\ProjectBundle\Entity\User $user
+     *
+     * @return Comment
+     */
+    public function setUser(\App\ProjectBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \App\ProjectBundle\Entity\User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

@@ -18,7 +18,7 @@ class ProfileController extends Controller
     {
 //	    $user = new User();
 
-        $id = 1;
+        $id = 3;
         $em = $this->getDoctrine()->getManager();
 
         $categories = $em->getRepository('AppProjectBundle:User')->find($id);
@@ -28,7 +28,7 @@ class ProfileController extends Controller
 
         $repository = $this->getDoctrine()->getRepository('AppProjectBundle:User');
 
-        $user = $repository->find(1);
+        $user = $repository->find(3);
 
         var_dump($user);
         die;

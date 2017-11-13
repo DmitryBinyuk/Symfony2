@@ -48,6 +48,9 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
             # FOR FIXTURES  END,
             new Custom\AdminBundle\CustomAdminBundle(),
+
+            #FOR MIGRATIONS
+            new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

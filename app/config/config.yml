@@ -238,7 +238,7 @@ security:
 fos_user:
     db_driver:      orm # can be orm or odm
     firewall_name:  main
-    user_class:     Application\Sonata\UserBundle\Entity\User
+    user_class:     App\ProjectBundle\Entity\User
     #Application\Sonata\UserBundle\Entity\User
 
 
@@ -247,4 +247,12 @@ fos_user:
         group_manager: sonata.user.orm.group_manager  
     
     service:
-        user_manager: sonata.user.orm.user_manager 
+        user_manager: sonata.user.orm.user_manager
+
+#MIGRATIONS
+doctrine_migrations:
+    dir_name: "%kernel.root_dir%/DoctrineMigrations"
+    namespace: Application\Migrations
+    table_name: migration_versions
+    name: Application Migrations
+    organize_migrations: false # Version >=1.2 Possible values are: "BY_YEAR", "BY_YEAR_AND_MONTH", false

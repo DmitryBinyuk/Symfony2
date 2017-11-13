@@ -94,4 +94,3 @@ class ProductComment extends Comment
         return $this->body;
     }
 }
-

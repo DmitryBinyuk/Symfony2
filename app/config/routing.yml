@@ -1,12 +1,12 @@
-custom_admin:
-    resource: "@CustomAdminBundle/Controller/"
-    type:     annotation
-    prefix:   /custom-admin
-
 app_project:
     resource: "@AppProjectBundle/Controller/"
     type:     annotation
     prefix:   /
+
+custom_admin:
+    resource: "@CustomAdminBundle/Controller/"
+    type:     annotation
+    prefix:   /custom-admin
 
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'

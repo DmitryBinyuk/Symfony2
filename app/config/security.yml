@@ -5,7 +5,8 @@ security:
         #Symfony\Component\Security\Core\User\User: plaintext
         #FOS\UserBundle\Model\UserInterface: sha512
         #FOR SONATA USER
-        Application\Sonata\UserBundle\Entity\User: sha512
+#        Application\Sonata\UserBundle\Entity\User: sha512
+        App\ProjectBundle\Entity\User: sha512
 #        Sonata\UserBundle\Entity\BaseUser: sha512
     access_control:
         # URL of FOSUserBundle which need to be available to anonymous users
