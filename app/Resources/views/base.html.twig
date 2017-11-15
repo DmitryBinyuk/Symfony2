@@ -45,7 +45,7 @@
         	<div class="span12">
             	<div class="header-block clearfix">
                     <div class="clearfix header-block-pad">
-                        <h1 class="brand"><a href="/app_dev.php"><img src="{{ asset('img/logo.png') }}" alt=""></a><span>My Project</span></h1>
+                        <h1 class="brand"><a href="/"><img src="{{ asset('img/logo.png') }}" alt=""></a><span>My Project</span></h1>
                         <form id="search-form" action="search.php" method="GET" accept-charset="utf-8" class="navbar-form" >
                             <input type="text" name="s" onBlur="if(this.value=='') this.value=''" onFocus="if(this.value =='' ) this.value=''"  >
                             <a href="#" onClick="document.getElementById('search-form').submit()"></a>
@@ -79,6 +79,12 @@
                                       <li><a href="{{ path('producers') }}">producers</a></li>
                                       <li><a href="{{ path('categories') }}">categories</a></li>
                                       <li><a href="{{ path('profile') }}">profile</a></li>
+                                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                            <li><p>Logged as: {{ app.user.username }}</p></li>
+                                                <a href="{{ path('user_logout') }}">Logout</a>
+                                        {% else %}
+                                            <li><a href="{{ path('user_login') }}">Login</a></li>
+                                        {% endif %}
                                     </ul>
                                 </div>
                                 <ul class="social-icons">

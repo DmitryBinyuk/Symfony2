@@ -44,7 +44,7 @@
 </div>
 
 <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-6 col-md-offset-6">
 
             <select name="country"data-width="100%">
                 {% for value in categories %}
@@ -69,8 +69,11 @@
 
             {% if comments|length >0 %}
                 <h2>Comments:</h2>
-                {% for comment in comments %}
-                    <div class="col-sm-8 col-sm-offset-4 comment-container">
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+                {% for comment in pagination %}
+                    <div class="col-sm-6 col-sm-offset-6 comment-container">
                         <div class="panel panel-white post panel-shadow">
                             <div class="post-heading">
                                 <div class="pull-left image">
@@ -81,11 +84,11 @@
                                         {#<a href="#"><b>{{ comment.user.getFirstname() }}</b></a>#}
                                         made a post.
                                     </div>
-                                    <h6 class="text-muted time">{{ comment.title }}</h6>
+                                    <h6 class="text-muted time comment-title">{{ comment.title }}</h6>
                                 </div>
                             </div>
                             <div class="post-description">
-                                <p>{{ comment.body }}</p>
+                                <p class="comment-body">{{ comment.body }}</p>
                                 <div class="stats">
                                     <a href="#" class="btn btn-default stat-item">
                                         <i class="fa fa-thumbs-up icon"></i>2
@@ -98,13 +101,17 @@
                         </div>
                     </div>
                 {% endfor %}
+                <div class="navigation">
+                    {{ knp_pagination_render(pagination) }}
+                </div>
+
             {% endif %}
             <div class="product-add-comment-wrapper col-sm-8 col-sm-offset-4">
-                <div class="col-lg-3">
-                    <input type="text" class="comment-title">
+                <div class="col-lg-8">
+                    <input type="text" class="comment-title-input" size="30">
                 </div>
-                <div class="col-lg-3">
-                    <textarea class="comment-body"></textarea>
+                <div class="col-lg-8">
+                    <textarea class="comment-body-input" cols="30"></textarea>
                 </div>
                 <div class="col-lg-3">
                     <a class="btn btn_ product-add-comment" data-id="{{ product.id }}">Add comment</a>

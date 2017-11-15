@@ -16,27 +16,12 @@ class ProfileController extends Controller
      */
     public function showAction(Request $request)
     {
-//	    $user = new User();
-
-        $id = 3;
-        $em = $this->getDoctrine()->getManager();
-
-        $categories = $em->getRepository('AppProjectBundle:User')->find($id);
-        $user = $categories->getResult();
-
-
-
-        $repository = $this->getDoctrine()->getRepository('AppProjectBundle:User');
-
-        $user = $repository->find(3);
-
-        var_dump($user);
-        die;
+        $user = $this->get('security.token_storage')->getToken()->getUser();
 
         $form = $this->createFormBuilder($user)
-            ->add('firstname', 'text', array('data' => 'Default value'))
-            ->add('lastname', 'text')
-            ->add('save', 'submit', array('label' => 'Update profile'))
+            ->add('username', 'text', array('data' => $user->getUsername()))
+            ->add('email', 'text', array('data' => $user->getEmail()))
+            ->add('save', 'submit', array('label' => 'Update profile', 'attr' => ['class' => 'btn btn_']))
             ->getForm();
 
         $form->handleRequest($request);
@@ -51,6 +36,27 @@ class ProfileController extends Controller
              $em = $this->getDoctrine()->getManager();
              $em->persist($user);
              $em->flush();
+
+            $emailService = $this->get('email.service');
+
+            $subject = 'Your profile was updated';
+            $template = 'profile_changed';
+            $params = array('username' => $user->getUsername());
+
+            $emailService->sendMail($subject, $user->getEmail(), $template, $params);
+
+//            $message = (new \Swift_Message('Your profile was updated'))
+//                ->setFrom('dev.tyopa@gmail.com')
+//                ->setTo($user->getEmail())
+//                ->setBody(
+//                    $this->renderView(
+//                        'AppProjectBundle:Emails:profile_changed.html.twig',
+//                        array('username' => $user->getUsername())
+//                    ),
+//                    'text/html'
+//                );
+//
+//            $this->get('mailer')->send($message);
 
             return $this->redirectToRoute('profile');
         }

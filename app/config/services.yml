@@ -47,3 +47,7 @@ services:
         class:     App\ProjectBundle\Services\ProductService
         arguments:
             - '@doctrine.orm.entity_manager'
+
+    email.service:
+        class:     App\ProjectBundle\Services\EmailService
+#        arguments: [subject, receiver, template, params]

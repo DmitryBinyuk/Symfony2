@@ -16,6 +16,7 @@ use App\ProjectBundle\Event\ProductWatchEvent;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use App\ProjectBundle\Entity\User;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ProductController extends Controller
 {
@@ -67,9 +68,19 @@ class ProductController extends Controller
         $discount = $product->getDiscount();
 
         $comments = $product->getComments();
-//        foreach ($comments as $comment){
-//            var_dump($comment->getUser()->getId());
-//        }
+        //        foreach ($comments as $comment){
+        //            var_dump($comment->getUser()->getId());
+        //        }
+
+        $paginator  = $this->get('knp_paginator');
+
+        $request = $this->get('request');
+
+        $pagination = $paginator->paginate(
+            $comments, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            3/*limit per page*/
+        );
 
         return $this->render('AppProjectBundle:Product:show.html.twig',
                             array('product' => $product,
@@ -77,7 +88,8 @@ class ProductController extends Controller
                                   'categories' => $categories,
                                   'managers' => $managers,
                                   'discount' => $discount,
-                                  'comments' => $comments));//, 'weather' => $weather));
+                                  'comments' => $comments,
+                                  'pagination' => $pagination));//, 'weather' => $weather));
     }
 
     /**
@@ -141,13 +153,11 @@ class ProductController extends Controller
 
         $user = $this->get('security.token_storage')->getToken()->getUser();
 
-//        $user = $this->getDoctrine()->getRepository(User::class)->find(1);
-
         $request = $this->get('request');
 
         $comment = new Comment();
         $comment->setTitle($request->request->get('title'));
-        $comment->setBody($request->request->get('title'));
+        $comment->setBody($request->request->get('body'));
         $comment->setProduct($product);
         $comment->setUser($user);
 
@@ -155,12 +165,9 @@ class ProductController extends Controller
         $em->persist($comment);
         $em->flush();
 
-        $response = new Response(
-            'Ok',
-            Response::HTTP_OK,
-            array('content-type' => 'text/html')
-        );
+        $response = new JsonResponse();
+        $response->setData(['title' => $request->request->get('title'), 'body' => $request->request->get('body')]);
 
-        $response->send();
+        return $response;
     }
 }

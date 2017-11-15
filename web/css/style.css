@@ -1635,3 +1635,14 @@ form#newsletter label {
   padding-top: 20px;
 }
 /* CSS for comments end */
+.login-container{
+  margin-left: 40%;
+}
+
+.login-block{
+  float: right;
+}
+
+.register-button{
+  margin-top: 20px;
+}
