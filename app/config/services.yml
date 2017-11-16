@@ -50,4 +50,7 @@ services:
 
     email.service:
         class:     App\ProjectBundle\Services\EmailService
-#        arguments: [subject, receiver, template, params]
+        arguments:
+            - '@service_container'
+            - '@swiftmailer.mailer'
+            - '@twig'

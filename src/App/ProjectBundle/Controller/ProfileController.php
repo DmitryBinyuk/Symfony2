@@ -27,6 +27,7 @@ class ProfileController extends Controller
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+
             // $form->getData() holds the submitted values
             // but, the original `$task` variable has also been updated
             $user = $form->getData();
@@ -44,19 +45,6 @@ class ProfileController extends Controller
             $params = array('username' => $user->getUsername());
 
             $emailService->sendMail($subject, $user->getEmail(), $template, $params);
-
-//            $message = (new \Swift_Message('Your profile was updated'))
-//                ->setFrom('dev.tyopa@gmail.com')
-//                ->setTo($user->getEmail())
-//                ->setBody(
-//                    $this->renderView(
-//                        'AppProjectBundle:Emails:profile_changed.html.twig',
-//                        array('username' => $user->getUsername())
-//                    ),
-//                    'text/html'
-//                );
-//
-//            $this->get('mailer')->send($message);
 
             return $this->redirectToRoute('profile');
         }

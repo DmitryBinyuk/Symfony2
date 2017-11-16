@@ -1,0 +1,27 @@
+product:
+    description: Описание
+    related_products: Релевантные продукты
+    comments: Комментарии
+    add_comment: Добавить комментарий
+    managers: Менеджеры
+    available_discount: Доступные скидки
+    categories: Категории
+
+products:
+    title: Продукты
+    more_info: подробнее
+
+producers:
+    title: Производители
+    more_info: подробнее
+
+producer:
+    title: Производитель
+    description: Описание
+
+product_categories:
+    title: Категории
+
+profile:
+    title: Профиль пользователя
+

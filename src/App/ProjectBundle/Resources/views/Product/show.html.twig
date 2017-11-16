@@ -11,27 +11,26 @@
         <div class="span3 col-md-4">
             
             {% media product.media, 'big' %}
-            <h5>Description:</h5>
+            <h5>{{ 'product.description'|trans({}, 'AppProjectBundle') }}</h5>
             <p>{{ product.description }}</p>
 
         </div>
     </div>
 
     <div class="col-md-4 pull-right">
-        <h2>Managers:</h2>
+        <h2>{{ 'product.managers'|trans({}, 'AppProjectBundle') }}:</h2>
         {% for manager in managers %}
             <div class="row managers-product">
                 <p>{{ manager.fullname }}</p>
                 <p>{{ manager.position }}</p>
                 <p>{{ manager.phone }}</p>
-                {# for attributes with special chars cool:) #}
                 <p>{{ attribute(manager, 'contactEmail') }}</p>
 
             </div>
         {% endfor %}
 
         {% if discount is not null %}
-            <h2>Available<br> discount:</h2>
+            <h2>{{ 'product.available_discount'|trans({}, 'AppProjectBundle') }}:</h2>
             <div class="row managers-product">
                 <p>{{ discount.title }}</p>
                 <p>Total count: {{ discount.totalCount }}</p>
@@ -45,7 +44,7 @@
 
 <div class="row">
         <div class="col-md-6 col-md-offset-6">
-
+            {{ 'product.categories'|trans({}, 'AppProjectBundle') }}
             <select name="country"data-width="100%">
                 {% for value in categories %}
                      <option value="{{ value.id }}" {{ (product.category.id == value.id) ? ' selected ' : '' }}>{{ value.name }}</option>
@@ -59,7 +58,7 @@
             {{ product.category ? product.category.description }}
 
             {% if relatedProducts|length >0 %}
-                <h2>Related products:</h2>
+                <h2>{{ 'product.related_products'|trans({}, 'AppProjectBundle') }}:</h2>
                 <ul>
                     {% for product in relatedProducts %}
                         <li>{{ product.name }}</li>
@@ -68,7 +67,7 @@
             {% endif %}
 
             {% if comments|length >0 %}
-                <h2>Comments:</h2>
+                <h2>{{ 'product.comments'|trans({}, 'AppProjectBundle') }}:</h2>
                 <div class="navigation">
                     {{ knp_pagination_render(pagination) }}
                 </div>
@@ -114,7 +113,7 @@
                     <textarea class="comment-body-input" cols="30"></textarea>
                 </div>
                 <div class="col-lg-3">
-                    <a class="btn btn_ product-add-comment" data-id="{{ product.id }}">Add comment</a>
+                    <a class="btn btn_ product-add-comment" data-id="{{ product.id }}">{{ 'product.add_comment'|trans({}, 'AppProjectBundle') }}</a>
                 </div>
             </div>
 

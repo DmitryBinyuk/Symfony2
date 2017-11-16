@@ -1,0 +1,26 @@
+product:
+    description: Description
+    related_products: Related products
+    comments: Comments
+    add_comment: Add comment
+    managers: Managers
+    available_discount: Available discount
+    categories: Categories
+
+products:
+    title: Products
+    more_info: more info
+
+producers:
+    title: Producers
+    more_info: more info
+
+producer:
+    title: Producer
+    description: Description
+
+product_categories:
+    title: Категории
+
+profile:
+    title: User profile
