@@ -1646,3 +1646,13 @@ form#newsletter label {
 .register-button{
   margin-top: 20px;
 }
+
+.products-title{
+  width: 60%;
+  float: left;
+}
+
+.products-search{
+  width: 40%;
+  float: left;
+}

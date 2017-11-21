@@ -5,39 +5,40 @@
 {% block body %}
 
 <div class="row">
-<h2>{{ 'products.title'|trans({}, 'AppProjectBundle') }}:</h2>
+<h2 class="products-title">{{ 'products.title'|trans({}, 'AppProjectBundle') }}:</h2>
+    <div id="search-form" class="navbar-form pull-right products-search" >
+        <input type="text" name="products_search_text" class="products_search_text">
+        <a class="product-search-submit"></a>
+    </div>
 </div>
     <div class="row">
-      <div class="span12">        
-        <ul class="thumbnails">
-    {% for item in pagination %}
-    
-          <li class="span3">
-            <div class="thumbnail">
-              <div class="caption">
-
-                <h3>{{ item.name }}</h3>
-              </div>
-              <div>
-              {% media item.media, 'small' %}
-              </div><br>
-              <div class="thumbnail-pad">
-                  <p>{{ item.description }}</p>
-                  <a href="{{ path('product', {'id': item.id}) }}" class="btn btn_">{{ 'products.more_info'|trans({}, 'AppProjectBundle') }}</a>
-              </div>
-            </div>
-          </li>
-        
-    {% endfor %}
-     </ul>
+      <div class="span12">
+        <ul class="thumbnails products-list">
+            {% for item in pagination %}
+              <li class="span3 product-item">
+                <div class="thumbnail">
+                  <div class="caption">
+                    <h3 class="product-name">{{ item.name }}</h3>
+                  </div>
+                  <div class="product-media">
+                    {% media item.media, 'small' %}
+                  </div><br>
+                  <div class="thumbnail-pad">
+                      <p class="product-description">{{ item.description }}</p>
+                      <a href="{{ path('product', {'id': item.id}) }}" class="btn btn_">{{ 'products.more_info'|trans({}, 'AppProjectBundle') }}</a>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+        </ul>
       </div>
     </div>
 <div class="row">
-<div class="span6 offset3">
-<div class="text-center navigation">
-    {{ knp_pagination_render(pagination) }}
-</div>
-</div>
+    <div class="span6 offset3">
+        <div class="text-center navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
 </div>
     
 {% endblock %}

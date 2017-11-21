@@ -28,7 +28,8 @@
         "doctrine/doctrine-migrations-bundle": "^1.0",
         "ocramius/proxy-manager": "^2.1",
         "knplabs/knp-menu-bundle": "^2.0",
-        "knplabs/knp-menu": "^2.2"
+        "knplabs/knp-menu": "^2.2",
+        "elasticsearch/elasticsearch": "^6.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",
