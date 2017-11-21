@@ -15,8 +15,7 @@ $(document).ready(function(){
             appendComment(title, body);
         });
 
-        // $.post( "test.php", { title: "John", body: "2pm" } );
-
+        //CHEATSHEET: $.post( "test.php", { title: "John", body: "2pm" } );
     });
     
     function appendComment(title, body) {
@@ -51,15 +50,12 @@ $(document).ready(function(){
                 url: "/products-search",
                 data: {searchText : searchText},
             }).success(function(data) {
-                // console.log(data);
-
-                $.each( data, function( index, value ){
-                    // console.log(value.name);
-
-                    displayProductsSearch(value);
-
-                });
-                cloneCheker = 0;
+                if(data.length > 0){
+                    $.each( data, function( index, value ){
+                        displayProductsSearch(value);
+                    });
+                    cloneCheker = 0;
+                }
             });
         }
     }
