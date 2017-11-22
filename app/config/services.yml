@@ -12,7 +12,7 @@ services:
 #        arguments: [~, AppBundle\Entity\Category, ~]
 #        tags:
 #            - { name: sonata.admin, manager_type: orm, label: Category }
-            
+#
 #    weather.service:
 #        class:     App\ProjectBundle\Services\WeatherService
 #        arguments: []
@@ -20,7 +20,7 @@ services:
     kernel.listener.product_watch_listener:
         class: App\ProjectBundle\EventListener\ProductWatchListener
         arguments:
-            - @doctrine.orm.entity_manager
+            - '@doctrine.orm.entity_manager'
         tags:
             - { name: kernel.event_listener, event: product.watch, method: onProductWatch }
             
@@ -33,7 +33,7 @@ services:
     kernel.listener.producer_watch_listener:
         class: App\ProjectBundle\EventListener\ProducerWatchListener
         arguments:
-            - @doctrine.orm.entity_manager
+            - '@doctrine.orm.entity_manager'
         tags:
             - { name: kernel.event_listener, event: producer.watch, method: onProducerWatch }
 

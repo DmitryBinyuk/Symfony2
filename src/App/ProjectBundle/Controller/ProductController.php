@@ -141,7 +141,7 @@ class ProductController extends Controller
      * @Route("/product/{id}/add-comment")
      * @Method("POST")
      */
-    public function addComment($id)//Request $request,
+    public function addCommentAction($id)//Request $request,
     {
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
 

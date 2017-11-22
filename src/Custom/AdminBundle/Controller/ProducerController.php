@@ -70,9 +70,7 @@ class ProducerController extends Controller
         $producer = $em->getRepository(Producer::class)->find($id);
 
         if (!$producer) {
-            throw $this->createNotFoundException(
-                'No producer found for id '.$id
-            );
+            throw $this->createNotFoundException('The producer does not exist');
         }
 
         $form = $this->createFormBuilder($producer)
@@ -116,6 +114,10 @@ class ProducerController extends Controller
             ->getQuery();
 
         $producer = $query->getSingleResult();
+
+        if (!$producer) {
+            throw $this->createNotFoundException('The producer does not exist');
+        }
 
         return $this->render('CustomAdminBundle:Producer:show.html.twig', array('producer' => $producer));
     }

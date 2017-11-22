@@ -119,6 +119,11 @@ class ProductCategoryController extends Controller
 
         $productCategory = $query->getSingleResult();
 
+
+        if (!$productCategory) {
+            throw $this->createNotFoundException('The product category does not exist');
+        }
+
         return $this->render('CustomAdminBundle:ProductCategory:show.html.twig', array('productCategory' => $productCategory));
     }
 

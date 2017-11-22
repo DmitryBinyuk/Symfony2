@@ -73,9 +73,7 @@ class ProductController extends Controller
         $product = $em->getRepository(Product::class)->find($id);
 
         if (!$product) {
-            throw $this->createNotFoundException(
-                'No product found for id '.$id
-            );
+            throw $this->createNotFoundException('The product does not exist');
         }
 
         $form = $this->createFormBuilder($product)
@@ -119,6 +117,10 @@ class ProductController extends Controller
             ->getRepository(Product::class);
 
         $product = $repository->find($id);
+
+        if (!$product) {
+            throw $this->createNotFoundException('The product does not exist');
+        }
 
         return $this->render('CustomAdminBundle:Product:show.html.twig', array('product' => $product));
     }
