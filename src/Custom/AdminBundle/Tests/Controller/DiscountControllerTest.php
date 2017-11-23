@@ -78,7 +78,7 @@ class DiscountControllerTest extends WebTestCase
 
         // set some values
         $form['form[title]'] = 'title_test_unit_create';
-        $form['form[total_count]'] = 'total_count_test_unit_create';
+        $form['form[total_count]'] = 1;
         $form['form[total_price]'] = 1111;
         $form['form[discount_size_percent]'] = 15;
 
@@ -101,7 +101,7 @@ class DiscountControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-        $crawler = $client->request('GET', '/custom-admin/products/discounts/6');
+        $crawler = $client->request('GET', '/custom-admin/discounts/update/6');
 
         $this->assertContains(
             '<h3>Update discount:</h3>',
@@ -113,7 +113,7 @@ class DiscountControllerTest extends WebTestCase
 
         // set some values
         $form['form[title]'] = 'title_test_unit_update';
-        $form['form[total_count]'] = 'total_count_test_unit_update';
+        $form['form[total_count]'] = 11;
         $form['form[total_price]'] = 1111;
         $form['form[discount_size_percent]'] = 15;
 

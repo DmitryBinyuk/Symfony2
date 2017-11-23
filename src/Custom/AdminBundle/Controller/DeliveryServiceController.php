@@ -68,9 +68,7 @@ class DeliveryServiceController extends Controller
         $deliveryService = $em->getRepository(DeliveryService::class)->find($id);
 
         if (!$deliveryService) {
-            throw $this->createNotFoundException(
-                'No delivery service found for id '.$id
-            );
+            throw $this->createNotFoundException('The delivery service does not exist');
         }
 
         $form = $this->createFormBuilder($deliveryService)
@@ -108,6 +106,10 @@ class DeliveryServiceController extends Controller
             ->getRepository(DeliveryService::class);
 
         $deliveryService = $repository->find($id);
+
+        if (!$deliveryService) {
+            throw $this->createNotFoundException('The delivery service does not exist');
+        }
 
         return $this->render('CustomAdminBundle:DeliveryService:show.html.twig', array('deliveryService' => $deliveryService));
     }

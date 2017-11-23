@@ -31,6 +31,10 @@ class UserController extends Controller
         $userManager = $this->container->get('fos_user.user_manager');
         $user = $userManager->findUserBy(array('id'=>$id));
 
+        if (!$user) {
+            throw $this->createNotFoundException('The user does not exist');
+        }
+
         return $this->render('CustomAdminBundle:User:show.html.twig', array('user' => $user));
     }
 
@@ -111,7 +115,7 @@ class UserController extends Controller
             return $this->redirectToRoute('admin-users');
         }
 
-        return $this->render('CustomAdminBundle:Product:update.html.twig', array(
+        return $this->render('CustomAdminBundle:User:update.html.twig', array(
             'form' => $form->createView(),
         ));
     }
