@@ -5,9 +5,9 @@
         <div class="container">
             <h3>View product category:</h3>
             <a class="btn btn-info btn-md" href="{{ path('admin-product-categories') }}">Back</a>
-            <ul>
-                <li>{{ productCategory.name }}</li>
-                <li>{{ productCategory.description }}</li>
+            <ul class="list-group">
+                <li class="list-group-item">{{ productCategory.name }}</li>
+                <li class="list-group-item">{{ productCategory.description }}</li>
             </ul>
         </div>
     </div>

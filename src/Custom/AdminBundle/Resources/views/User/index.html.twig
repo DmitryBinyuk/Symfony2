@@ -11,7 +11,6 @@
                     <th>Username</th>
                     <th>Email</th>
                     <th>Locked</th>
-                    {#<th>Phone</th>#}
                     <th>Options</th>
                 </tr>
                 </thead>
@@ -21,7 +20,6 @@
                             <td>{{ user.username }}</td>
                             <td>{{ user.email }}</td>
                             <td>{{ user.locked ? 'Yes':'No' }}</td>
-                            {#<td>{{ user.created_at }}</td>#}
                             <td>
                                 <a class="btn btn-primary btn-md" href="{{ path('admin-users-show', {'id': user.id }) }}">view</a>
                                 <a class="btn btn-success btn-md" href="{{ path('admin-users-update', {'id': user.id }) }}">update</a>
@@ -50,7 +48,6 @@
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>

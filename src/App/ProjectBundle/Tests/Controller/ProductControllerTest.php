@@ -13,7 +13,7 @@ class ProductControllerTest extends WebTestCase
         $crawler = $client->request('GET', '/product/6');//{id}
 
         $this->assertEquals(
-            200, // or Symfony\Component\HttpFoundation\Response::HTTP_OK
+            200,
             $client->getResponse()->getStatusCode()
         );
     }
@@ -22,15 +22,6 @@ class ProductControllerTest extends WebTestCase
     {
         $client = static::createClient();
 
-//        $crawler = $client->request(
-//            'POST',
-//            '/product/6/add-comment',
-//            array(),
-//            array(),
-//            array('CONTENT_TYPE' => 'application/json'),//'CONTENT_TYPE' => 'application/json'
-//            '{"title":"Unit test title", "body":"Unit test body"}'
-//        );
-
         $crawler = $client->request(
             'POST',
             '/product/6/add-comment',
@@ -38,13 +29,8 @@ class ProductControllerTest extends WebTestCase
         );
 
         $this->assertEquals(
-            200, // or Symfony\Component\HttpFoundation\Response::HTTP_OK
+            200,
             $client->getResponse()->getStatusCode()
         );
-
-//        $this->assertContains(
-//            'Hello World',
-//            $client->getResponse()->getContent()
-//        );
     }
 }

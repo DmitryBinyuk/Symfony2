@@ -34,11 +34,12 @@ class ManagerController extends Controller
         $manager = new Manager();
 
         $form = $this->createFormBuilder($manager)
-            ->add('fullname', 'text')
-            ->add('position', 'text')
-            ->add('phone', 'text')
-            ->add('contact_email', 'text')
-            ->add('save', 'submit', array('label' => 'Create Manager'))
+            ->add('fullname', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('position', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('phone', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('contact_email', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Create Manager',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);
@@ -76,11 +77,12 @@ class ManagerController extends Controller
         }
 
         $form = $this->createFormBuilder($manager)
-            ->add('fullname', 'text')
-            ->add('position', 'text')
-            ->add('phone', 'text')
-            ->add('contact_email', 'text')
-            ->add('save', 'submit', array('label' => 'Update'))
+            ->add('fullname', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('position', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('phone', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('contact_email', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Update',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);

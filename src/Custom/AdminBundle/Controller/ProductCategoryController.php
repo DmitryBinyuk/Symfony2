@@ -35,9 +35,10 @@ class ProductCategoryController extends Controller
         $productCategory = new ProductCategory();
 
         $form = $this->createFormBuilder($productCategory)
-            ->add('name', 'text')
-            ->add('description', 'text')
-            ->add('save', 'submit', array('label' => 'Create Category'))
+            ->add('name', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('description', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Create Category',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);
@@ -76,9 +77,10 @@ class ProductCategoryController extends Controller
         }
 
         $form = $this->createFormBuilder($productCategory)
-            ->add('name', 'text')
-            ->add('description', 'text')
-            ->add('save', 'submit', array('label' => 'Update'))
+            ->add('name', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('description', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Update',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);
@@ -141,7 +143,6 @@ class ProductCategoryController extends Controller
         $query->execute();
 
         $query = $em->createQuery("DELETE FROM AppProjectBundle:ProductCategory c WHERE c.id = ".$id);
-//        $query->setParameter('id', $id);
 
         $query->execute();
 

@@ -13,9 +13,8 @@ class LoadProductData implements FixtureInterface
      */
     public function load(ObjectManager $manager)
     {
-        
         $count = 5;
-	$IsAct = true;
+	    $IsAct = true;
         
         for ($x = 0; $x <= $count; $x++) {
             $newProduct = new Product();
@@ -24,7 +23,6 @@ class LoadProductData implements FixtureInterface
             $newProduct->setDescription('description_'.$x);
             $newProduct->setPrice($x*$x);
             $manager->persist($newProduct);
-            
         }
         
         $manager->flush();

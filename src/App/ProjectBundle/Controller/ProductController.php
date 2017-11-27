@@ -68,9 +68,6 @@ class ProductController extends Controller
         $discount = $product->getDiscount();
 
         $comments = $product->getComments();
-        //        foreach ($comments as $comment){
-        //            var_dump($comment->getUser()->getId());
-        //        }
 
         $paginator  = $this->get('knp_paginator');
 

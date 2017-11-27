@@ -35,10 +35,11 @@ class ProducerController extends Controller
         $producer = new Producer();
 
         $form = $this->createFormBuilder($producer)
-            ->add('name', 'text')
-            ->add('country', 'text')
-            ->add('description', 'text')
-            ->add('save', 'submit', array('label' => 'Create Producer'))
+            ->add('name', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('country', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('description', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Create Producer',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);
@@ -74,10 +75,11 @@ class ProducerController extends Controller
         }
 
         $form = $this->createFormBuilder($producer)
-            ->add('name', 'text')
-            ->add('country', 'text')
-            ->add('description', 'text')
-            ->add('save', 'submit', array('label' => 'Update'))
+            ->add('name', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('country', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('description', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Update',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);

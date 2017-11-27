@@ -59,7 +59,7 @@
                                 <div class="nav-collapse nav-collapse_ collapse">
                                     <ul class="nav sf-menu">
                                       <li class="active li-first"><a href="/app_dev.php"><em class="hidden-phone"></em><span class="visible-phone">Home</span></a></li>
-                                      <li class="sub-menu"><a href="#">about</a>
+                                      <li class="sub-menu"><a href="{{ path('feedback') }}">feedback</a>
                                         <ul>
                                           <li><a href="#">Welcome Message</a></li>
                                           <li class="sub-menu"><a href="#">Company Profile</a>
@@ -135,7 +135,7 @@
     <div class="span8 float">
       	<ul class="footer-menu">
         	<li><a href="/app_dev.php" class="current">Home</a>|</li>
-            <li><a href="#">about</a>|</li>
+            <li><a href="{{ path('feedback') }}">feedback</a>|</li>
             <li><a href="{{ path('products') }}">products</a>|</li>
             <li><a href="{{ path('producers') }}">producers</a>|</li>
             <li><a href="{{ path('categories') }}">categories</a>|</li>

@@ -49,11 +49,12 @@ class UserController extends Controller
         $user = $userManager->createUser();
 
         $form = $this->createFormBuilder($user)
-            ->add('username', 'text')
-            ->add('email', 'email')
-            ->add('email_canonical', 'email')
-            ->add('password', 'password')
-            ->add('save', 'submit', array('label' => 'Create User'))
+            ->add('username', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('email', 'email', array('attr' => array('class' => 'form-control')))
+            ->add('email_canonical', 'email', array('attr' => array('class' => 'form-control')))
+            ->add('password', 'password', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Create User',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);
@@ -93,11 +94,12 @@ class UserController extends Controller
         }
 
         $form = $this->createFormBuilder($user)
-            ->add('username', 'text')
-            ->add('email', 'email')
-            ->add('email_canonical', 'email')
-            ->add('password', 'password')
-            ->add('save', 'submit', array('label' => 'Update'))
+            ->add('username', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('email', 'email', array('attr' => array('class' => 'form-control')))
+            ->add('email_canonical', 'email', array('attr' => array('class' => 'form-control')))
+            ->add('password', 'password', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Update',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);

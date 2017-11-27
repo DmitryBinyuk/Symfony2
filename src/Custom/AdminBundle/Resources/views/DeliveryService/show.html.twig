@@ -5,11 +5,10 @@
         <div class="container">
             <h3>View Delivery Service:</h3>
             <a class="btn btn-info btn-md" href="{{ path('admin-delivery-services') }}">Back</a>
-            <ul>
-                <li>{{ deliveryService.name }}</li>
-                <li>{{ deliveryService.pricePerKilometer }}</li>
+            <ul class="list-group">
+                <li class="list-group-item">{{ deliveryService.name }}</li>
+                <li class="list-group-item">{{ deliveryService.pricePerKilometer }}</li>
             </ul>
-
         </div>
     </div>
 {% endblock %}

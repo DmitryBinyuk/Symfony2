@@ -34,14 +34,16 @@ class ProductController extends Controller
         $product = new Product();
 
         $form = $this->createFormBuilder($product)
-            ->add('name', 'text')
-            ->add('description', 'text')
-            ->add('price', 'text')
+            ->add('name', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('description', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('price', 'text', array('attr' => array('class' => 'form-control')))
             ->add('category', 'entity', array(
                 'class' => 'AppProjectBundle:ProductCategory',
                 'choice_label' => 'name',
+                'attr' => array('class' => 'form-control')
             ))
-            ->add('save', 'submit', array('label' => 'Create Product'))
+            ->add('save', 'submit', array('label' => 'Create Product',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);
@@ -77,15 +79,17 @@ class ProductController extends Controller
         }
 
         $form = $this->createFormBuilder($product)
-            ->add('name', 'text')
-            ->add('description', 'text')
-            ->add('price', 'text')
+            ->add('name', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('description', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('price', 'text', array('attr' => array('class' => 'form-control')))
             ->add('category', 'entity', array(
                 'class' => 'AppProjectBundle:ProductCategory',
                 'choice_label' => 'name',
                 'placeholder' => 'Choose category',
+                'attr' => array('class' => 'form-control')
             ))
-            ->add('save', 'submit', array('label' => 'Update'))
+            ->add('save', 'submit', array('label' => 'Update',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);
@@ -146,7 +150,6 @@ class ProductController extends Controller
             $product->removeComment($comment);
             $comment->setProduct(null);
         }
-
 
 //        $em->remove($product);
         $em->flush();

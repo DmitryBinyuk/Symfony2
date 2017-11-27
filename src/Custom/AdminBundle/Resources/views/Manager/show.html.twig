@@ -5,13 +5,12 @@
         <div class="container">
             <h3>View manager:</h3>
             <a class="btn btn-info btn-md" href="{{ path('admin-managers') }}">Back</a>
-            <ul>
-                <li>{{ manager.fullname }}</li>
-                <li>{{ manager.position }}</li>
-                <li>{{ manager.phone }}</li>
-                <li>{{ manager.contactEmail }}</li>
+            <ul class="list-group">
+                <li class="list-group-item">{{ manager.fullname }}</li>
+                <li class="list-group-item">{{ manager.position }}</li>
+                <li class="list-group-item">{{ manager.phone }}</li>
+                <li class="list-group-item">{{ manager.contactEmail }}</li>
             </ul>
-
         </div>
     </div>
 {% endblock %}

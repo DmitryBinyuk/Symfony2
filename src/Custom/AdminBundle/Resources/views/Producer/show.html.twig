@@ -5,12 +5,11 @@
         <div class="container">
             <h3>View producer:</h3>
             <a class="btn btn-info btn-md" href="{{ path('admin-producers') }}">Back</a>
-            <ul>
-                <li>{{ producer.name }}</li>
-                <li>{{ producer.country }}</li>
-                <li>{{ producer.description }}</li>
+            <ul class="list-group">
+                <li class="list-group-item">{{ producer.name }}</li>
+                <li class="list-group-item">{{ producer.country }}</li>
+                <li class="list-group-item">{{ producer.description }}</li>
             </ul>
-
         </div>
     </div>
 {% endblock %}

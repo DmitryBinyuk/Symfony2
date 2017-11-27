@@ -5,12 +5,11 @@
         <div class="container">
             <h3>View user:</h3>
             <a class="btn btn-info btn-md" href="{{ path('admin-users') }}">Back</a>
-            <ul>
-                <li>{{ user.username }}</li>
-                <li>{{ user.email }}</li>
-                <li>{{ user.locked ? 'Yes':'No' }}</li>
+            <ul class="list-group">
+                <li class="list-group-item">{{ user.username }}</li>
+                <li class="list-group-item">{{ user.email }}</li>
+                <li class="list-group-item">{{ user.locked ? 'Yes':'No' }}</li>
             </ul>
-
         </div>
     </div>
 {% endblock %}

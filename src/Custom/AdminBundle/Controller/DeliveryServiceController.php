@@ -34,9 +34,10 @@ class DeliveryServiceController extends Controller
         $deliveryService = new DeliveryService();
 
         $form = $this->createFormBuilder($deliveryService)
-            ->add('name', 'text')
-            ->add('pricePerKilometer', 'text')
-            ->add('save', 'submit', array('label' => 'Create Delivery Service'))
+            ->add('name', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('pricePerKilometer', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Create Delivery Service',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);
@@ -72,9 +73,10 @@ class DeliveryServiceController extends Controller
         }
 
         $form = $this->createFormBuilder($deliveryService)
-            ->add('name', 'text')
-            ->add('pricePerKilometer', 'text')
-            ->add('save', 'submit', array('label' => 'Update'))
+            ->add('name', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('pricePerKilometer', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Update',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);

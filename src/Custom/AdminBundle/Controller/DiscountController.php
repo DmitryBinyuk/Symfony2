@@ -35,11 +35,12 @@ class DiscountController extends Controller
         $discount = new Discount();
 
         $form = $this->createFormBuilder($discount)
-            ->add('title', 'text')
-            ->add('total_count', 'text')
-            ->add('total_price', 'text')
-            ->add('discount_size_percent', 'text')
-            ->add('save', 'submit', array('label' => 'Create Discount'))
+            ->add('title', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('total_count', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('total_price', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('discount_size_percent', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Create Discount',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);
@@ -78,11 +79,12 @@ class DiscountController extends Controller
         }
 
         $form = $this->createFormBuilder($discount)
-            ->add('title', 'text')
-            ->add('total_count', 'text')
-            ->add('total_price', 'text')
-            ->add('discount_size_percent', 'text')
-            ->add('save', 'submit', array('label' => 'Update'))
+            ->add('title', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('total_count', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('total_price', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('discount_size_percent', 'text', array('attr' => array('class' => 'form-control')))
+            ->add('save', 'submit', array('label' => 'Update',
+                'attr' => array('class' => 'btn btn-success')))
             ->getForm();
 
         $form->handleRequest($request);

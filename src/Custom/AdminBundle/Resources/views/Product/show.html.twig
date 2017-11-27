@@ -5,17 +5,16 @@
         <div class="container">
             <h3>View product:</h3>
             <a class="btn btn-info btn-md" href="{{ path('admin-products') }}">Back</a>
-            <ul>
-                <li>{{ product.name }}</li>
-                <li>{{ product.description }}</li>
-                <li>{{ product.price }}</li>
-                <li>
+            <ul class="list-group">
+                <li class="list-group-item">{{ product.name }}</li>
+                <li class="list-group-item">{{ product.description }}</li>
+                <li class="list-group-item">{{ product.price }}</li>
+                <li class="list-group-item">
                     {% if product.category is not null %}
                         {{ product.category.name }}
                     {% endif %}
                 </li>
             </ul>
-
         </div>
     </div>
 {% endblock %}

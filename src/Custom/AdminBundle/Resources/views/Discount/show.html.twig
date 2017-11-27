@@ -5,13 +5,12 @@
         <div class="container">
             <h3>View discount:</h3>
             <a class="btn btn-info btn-md" href="{{ path('admin-discounts') }}">Back</a>
-            <ul>
-                <li>{{ discount.title }}</li>
-                <li>{{ discount.totalCount }}</li>
-                <li>{{ discount.totalPrice }}</li>
-                <li>{{ discount.discountSizePercent }}</li>
+            <ul class="list-group">
+                <li class="list-group-item">{{ discount.title }}</li>
+                <li class="list-group-item">{{ discount.totalCount }}</li>
+                <li class="list-group-item">{{ discount.totalPrice }}</li>
+                <li class="list-group-item">{{ discount.discountSizePercent }}</li>
             </ul>
-
         </div>
     </div>
 {% endblock %}
